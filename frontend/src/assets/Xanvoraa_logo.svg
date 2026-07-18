@@ -1,0 +1,23 @@
+<svg width="230" height="40" viewBox="0 0 230 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5B6EF5"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Pixel dot grid -->
+  <rect x="0" y="4" width="7" height="7" rx="1.5" fill="#5B6EF5"/>
+  <rect x="9" y="4" width="7" height="7" rx="1.5" fill="#5B6EF5" opacity="0.45"/>
+  <rect x="0" y="13" width="7" height="7" rx="1.5" fill="#5B6EF5" opacity="0.45"/>
+  <rect x="9" y="13" width="7" height="7" rx="1.5" fill="#38BDF8" opacity="0.9"/>
+  <rect x="18" y="4" width="7" height="7" rx="1.5" fill="#38BDF8" opacity="0.35"/>
+  <rect x="18" y="13" width="7" height="7" rx="1.5" fill="#38BDF8" opacity="0.6"/>
+  <rect x="0" y="22" width="7" height="7" rx="1.5" fill="#38BDF8" opacity="0.2"/>
+  <rect x="9" y="22" width="7" height="7" rx="1.5" fill="#5B6EF5" opacity="0.3"/>
+  <rect x="18" y="22" width="7" height="7" rx="1.5" fill="#5B6EF5" opacity="0.15"/>
+
+  <!-- Text -->
+  <text x="34" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="-0.2">Xanvoraa</text>
+  <text x="34" y="33" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="400" fill="url(#g1)" letter-spacing="0.5">Technologies</text>
+</svg>
