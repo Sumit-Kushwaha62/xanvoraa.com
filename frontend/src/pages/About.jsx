@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_about_page.mp4'
 import { Link } from 'react-router-dom'
@@ -79,6 +80,11 @@ void milestones
 export default function About() {
   return (
     <div className="about-page">
+      <Seo
+        title="About Xanvoraa | Software Team in Jabalpur"
+        description="Meet Xanvoraa Technologies, a Jabalpur software team building reliable websites, mobile apps and custom digital products."
+        path="/about"
+      />
 
       {/* ── HERO ── */}
       <section className="page-hero">

@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -81,6 +82,11 @@ export default function Pricing() {
 
   return (
     <div className="pricing-page">
+      <Seo
+        title="Software & Website Development Pricing | Xanvoraa"
+        description="View transparent starting prices for business websites, ecommerce, mobile apps, custom software and ongoing support."
+        path="/pricing"
+      />
       <section className="page-hero">
         <PageHeroVideo src={pageHeroVideo} />
         <div className="page-hero__orb page-hero__orb--1" />

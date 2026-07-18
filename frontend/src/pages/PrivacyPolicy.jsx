@@ -1,8 +1,14 @@
+import Seo from '../components/Seo'
 import { Link } from 'react-router-dom'
 
 export default function PrivacyPolicy() {
   return (
     <section className="legal-page">
+      <Seo
+        title="Privacy Policy | Xanvoraa Technologies"
+        description="Learn how Xanvoraa Technologies collects, uses, stores and protects information submitted through our website."
+        path="/privacy-policy"
+      />
       <div className="container legal-page__inner">
         <p className="legal-page__eyebrow">Legal</p>
         <h1>Privacy <span>Policy</span></h1>

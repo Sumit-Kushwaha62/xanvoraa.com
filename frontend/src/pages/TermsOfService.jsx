@@ -1,8 +1,14 @@
+import Seo from '../components/Seo'
 import { Link } from 'react-router-dom'
 
 export default function TermsOfService() {
   return (
     <section className="legal-page">
+      <Seo
+        title="Terms of Service | Xanvoraa Technologies"
+        description="Read the terms governing use of the Xanvoraa Technologies website and information about project agreements."
+        path="/terms"
+      />
       <div className="container legal-page__inner">
         <p className="legal-page__eyebrow">Legal</p>
         <h1>Terms of <span>Service</span></h1>

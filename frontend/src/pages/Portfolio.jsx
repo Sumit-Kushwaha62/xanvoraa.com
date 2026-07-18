@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_portfolio_page.mp4'
 import { useState } from 'react'
@@ -141,6 +142,11 @@ export default function Portfolio() {
 
   return (
     <div className="portfolio-page">
+      <Seo
+        title="Software & Web Development Portfolio | Xanvoraa"
+        description="See custom software, hospital systems, school ERP, mobile app and website projects delivered by Xanvoraa Technologies."
+        path="/portfolio"
+      />
 
       {/* ── HERO ── */}
       <section className="page-hero portfolio-hero">

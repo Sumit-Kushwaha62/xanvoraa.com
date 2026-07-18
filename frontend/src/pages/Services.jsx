@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 // import { useState } from 'react'
 import servicesHeroVideo from '../assets/bg_serviess_page.mp4'
 // import { Link } from 'react-router-dom'
@@ -486,6 +487,11 @@ export default function Services() {
 
   return (
     <div className="srv-page">
+      <Seo
+        title="Software Development Services | Xanvoraa"
+        description="Explore web development, mobile apps, AI automation, WordPress, maintenance and custom software services from our Jabalpur team."
+        path="/services"
+      />
 
       {/* ══ VIDEO HERO ══ */}
       <section className="srv-hero">

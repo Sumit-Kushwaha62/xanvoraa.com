@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteIcon from '../components/SiteIcon'
@@ -292,6 +293,11 @@ export default function Home() {
 
   return (
     <div className="home">
+      <Seo
+        title="Software & Web Development Company in Jabalpur"
+        description="Xanvoraa builds custom software, websites and mobile apps for hospitals, schools, startups and enterprises in Jabalpur, India."
+        path="/"
+      />
 
       {/* ── HERO ── */}
       <section className="hero">

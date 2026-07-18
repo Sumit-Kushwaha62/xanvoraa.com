@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_career_page.mp4'
 import { useState } from 'react'
@@ -7,107 +8,153 @@ import { API_ENDPOINTS } from '../config/api'
 const openings = [
   {
     id: 1,
-    title: 'Frontend Developer',
+    title: 'WordPress Developer',
     type: 'Full-time',
     mode: 'On-site / Remote',
     location: 'Jabalpur, MP',
     experience: '1–3 years',
     color: '#6C63FF',
-    desc: 'We are looking for a passionate Frontend Developer who loves building beautiful, performant web interfaces.',
+    desc: 'We are looking for a WordPress Developer who can build fast, secure and conversion-focused business websites and ecommerce stores.',
     responsibilities: [
-      'Build responsive UIs using React.js',
-      'Collaborate with designers to implement pixel-perfect designs',
-      'Write clean, maintainable, well-documented code',
-      'Optimize applications for speed and scalability',
-      'Participate in code reviews and team discussions',
+      'Build and customize responsive WordPress websites',
+      'Develop and configure themes, plugins and page builders',
+      'Set up WooCommerce stores and third-party integrations',
+      'Optimize websites for performance, security and SEO',
+      'Maintain and troubleshoot existing client websites',
     ],
     requirements: [
-      'Strong proficiency in React.js and JavaScript (ES6+)',
-      'Good understanding of CSS3, Flexbox, Grid',
-      'Experience with REST APIs and async programming',
-      'Familiarity with Git version control',
-      'Good communication skills in Hindi/English',
+      'Strong knowledge of WordPress, HTML, CSS and JavaScript',
+      'Experience with Elementor, Gutenberg or custom themes',
+      'Understanding of PHP, MySQL and WordPress hooks',
+      'Experience with responsive design and speed optimization',
+      'Ability to manage multiple client projects',
     ],
-    niceToHave: ['Next.js', 'Framer Motion', 'TypeScript', 'Tailwind CSS'],
-    salary: '₹15,000 – ₹30,000/mo',
+    niceToHave: ['WooCommerce', 'ACF', 'Custom plugins', 'Technical SEO'],
   },
   {
     id: 2,
-    title: 'Backend Developer',
+    title: 'Full Stack Developer',
     type: 'Full-time',
     mode: 'On-site / Remote',
     location: 'Jabalpur, MP',
     experience: '1–3 years',
     color: '#00D4AA',
-    desc: 'Looking for a Backend Developer to build robust APIs, manage databases and handle server-side logic for our client projects.',
+    desc: 'Join us to build complete web products, from polished React interfaces to secure APIs, databases and production deployments.',
     responsibilities: [
-      'Design and develop RESTful APIs using Node.js or PHP',
-      'Database design and query optimization (MySQL, MongoDB)',
-      'Implement authentication and security best practices',
-      'Deploy and manage applications on cloud platforms',
-      'Work closely with frontend team for seamless integration',
+      'Develop frontend interfaces and backend services',
+      'Design REST APIs and scalable database structures',
+      'Implement authentication, permissions and integrations',
+      'Test, deploy and monitor production applications',
+      'Collaborate across design, product and client teams',
     ],
     requirements: [
-      'Proficiency in Node.js (Express) or PHP (Laravel)',
-      'Strong knowledge of MySQL / MongoDB',
-      'Understanding of REST API design principles',
-      'Experience with Git and deployment (Render/Vercel/VPS)',
-      'Problem-solving mindset',
+      'Proficiency in React and Node.js or PHP',
+      'Strong JavaScript fundamentals and REST API knowledge',
+      'Experience with SQL or NoSQL databases',
+      'Familiarity with Git and cloud deployment workflows',
+      'Strong debugging and problem-solving skills',
     ],
-    niceToHave: ['Docker', 'Redis', 'Supabase', 'AWS/Oracle Cloud'],
-    salary: '₹18,000 – ₹35,000/mo',
+    niceToHave: ['TypeScript', 'Next.js', 'Docker', 'Supabase'],
   },
   {
     id: 3,
-    title: 'UI/UX Designer',
+    title: 'Frontend Developer',
     type: 'Full-time',
-    mode: 'On-site',
+    mode: 'On-site / Remote',
     location: 'Jabalpur, MP',
-    experience: '1–2 years',
+    experience: '1–3 years',
     color: '#FF6B6B',
-    desc: 'We need a creative UI/UX Designer who can turn business requirements into beautiful, user-friendly digital experiences.',
+    desc: 'We are looking for a Frontend Developer who loves creating accessible, responsive and high-performance web interfaces.',
     responsibilities: [
-      'Create wireframes, prototypes and final UI designs in Figma',
-      'Design web and mobile app interfaces',
-      'Work with developers to ensure design is implemented correctly',
-      'Conduct basic user research and usability testing',
-      'Maintain design system and component library',
+      'Build responsive interfaces using React',
+      'Translate Figma designs into accurate reusable components',
+      'Integrate REST APIs and manage application state',
+      'Improve accessibility, performance and browser compatibility',
+      'Participate in testing and code reviews',
     ],
     requirements: [
-      'Strong proficiency in Figma',
-      'Good eye for typography, color and spacing',
-      'Understanding of web/mobile design principles',
-      'Portfolio with at least 3–5 design projects',
-      'Ability to take feedback constructively',
+      'Strong React, JavaScript, HTML and CSS skills',
+      'Good understanding of responsive design',
+      'Experience with REST APIs and asynchronous JavaScript',
+      'Familiarity with Git version control',
+      'Attention to UI detail and code quality',
     ],
-    niceToHave: ['Motion design', 'Lottie animations', 'HTML/CSS basics'],
-    salary: '₹12,000 – ₹25,000/mo',
+    niceToHave: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Animation libraries'],
   },
   {
     id: 4,
-    title: 'Digital Marketing Executive',
+    title: 'Backend Developer',
     type: 'Full-time',
-    mode: 'On-site',
+    mode: 'On-site / Remote',
     location: 'Jabalpur, MP',
-    experience: '0–2 years',
+    experience: '1–3 years',
     color: '#FFB347',
-    desc: 'Looking for a data-driven Digital Marketing Executive to manage SEO, Google Ads and social media for our clients.',
+    desc: 'We need a Backend Developer to create reliable APIs, data models and integrations for custom software and mobile applications.',
     responsibilities: [
-      'Manage SEO for client websites (on-page + technical)',
-      'Run and optimize Google Ads and Meta Ads campaigns',
-      'Handle social media accounts for clients',
-      'Create content calendars and manage posting schedules',
-      'Prepare monthly performance reports',
+      'Design and develop secure REST APIs',
+      'Create and optimize database schemas and queries',
+      'Implement authentication and role-based access',
+      'Integrate payments, messaging and third-party services',
+      'Deploy, monitor and troubleshoot backend services',
     ],
     requirements: [
-      'Basic understanding of SEO and how Google works',
-      'Familiarity with Google Ads and Meta Ads Manager',
-      'Good written communication in Hindi & English',
-      'Knowledge of tools like Google Search Console, Canva',
-      'Eagerness to learn and grow',
+      'Proficiency in Node.js or PHP and a backend framework',
+      'Strong knowledge of MySQL or PostgreSQL',
+      'Understanding of API design and application security',
+      'Experience with Git and deployment platforms',
+      'Good debugging and communication skills',
     ],
-    niceToHave: ['Google Ads certification', 'Video editing', 'WordPress'],
-    salary: '₹10,000 – ₹20,000/mo',
+    niceToHave: ['Redis', 'Docker', 'Supabase', 'Cloud platforms'],
+  },
+  {
+    id: 5,
+    title: 'Digital Marketing Intern',
+    type: 'Internship',
+    mode: 'On-site / Hybrid',
+    location: 'Jabalpur, MP',
+    experience: 'Fresher',
+    color: '#06B6D4',
+    desc: 'Learn and contribute across SEO, paid campaigns, content research and performance reporting for technology and local-business clients.',
+    responsibilities: [
+      'Support keyword research and on-page SEO tasks',
+      'Assist with Google Ads and Meta Ads campaigns',
+      'Research content ideas and competitor activity',
+      'Update campaign trackers and performance reports',
+      'Coordinate with design and content teams',
+    ],
+    requirements: [
+      'Basic understanding of digital marketing',
+      'Good written communication in Hindi and English',
+      'Comfort with spreadsheets and online research',
+      'Curiosity about SEO, analytics and advertising',
+      'Willingness to learn and take ownership',
+    ],
+    niceToHave: ['Google Analytics', 'Search Console', 'Canva', 'WordPress'],
+  },
+  {
+    id: 6,
+    title: 'Social Media Intern',
+    type: 'Internship',
+    mode: 'On-site / Hybrid',
+    location: 'Jabalpur, MP',
+    experience: 'Fresher',
+    color: '#EC4899',
+    desc: 'Help plan, create and manage engaging social content for Xanvoraa Technologies and selected client brands.',
+    responsibilities: [
+      'Assist with monthly social media calendars',
+      'Write captions and schedule approved posts',
+      'Research trends, formats and audience interests',
+      'Coordinate short-form creatives with the design team',
+      'Track engagement and prepare simple reports',
+    ],
+    requirements: [
+      'Strong interest in social media and content creation',
+      'Clear written communication in Hindi and English',
+      'Basic understanding of Instagram, LinkedIn and Facebook',
+      'Consistency, creativity and attention to detail',
+      'Ability to meet content deadlines',
+    ],
+    niceToHave: ['Canva', 'Video editing', 'Copywriting', 'Meta Business Suite'],
   },
 ]
 
@@ -198,6 +245,11 @@ export default function Career() {
 
   return (
     <div className="career-page">
+      <Seo
+        title="Software Development Careers in Jabalpur | Xanvoraa"
+        description="Explore frontend, backend, design and software development careers with Xanvoraa Technologies in Jabalpur or remotely."
+        path="/career"
+      />
 
       {/* ── HERO ── */}
       <section className="page-hero">
@@ -276,7 +328,6 @@ export default function Career() {
                     </div>
                   </div>
                   <div className="career-job__right">
-                    <span className="career-job__salary">{job.salary}</span>
                     <span className={`career-job__toggle ${openJob === job.id ? 'career-job__toggle--open' : ''}`}>↓</span>
                   </div>
                 </div>

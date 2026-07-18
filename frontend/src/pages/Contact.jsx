@@ -1,3 +1,4 @@
+import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_contact_page.mp4'
 import { useState } from 'react'
@@ -116,6 +117,11 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
+      <Seo
+        title="Contact Xanvoraa Technologies | Jabalpur"
+        description="Contact Xanvoraa Technologies in Jabalpur for custom software, web development, mobile apps, AI automation and support."
+        path="/contact"
+      />
 
       {/* ── HERO ── */}
       <section className="page-hero">
