@@ -1,8 +1,7 @@
-const configuredApiUrl = import.meta.env.VITE_API_BASE_URL?.trim()
-const API_BASE_URL = (
-  configuredApiUrl ||
-  (import.meta.env.DEV ? 'http://localhost:5000' : '')
-).replace(/\/+$/, '')
+const configuredDevApiUrl = import.meta.env.VITE_API_BASE_URL?.trim()
+const API_BASE_URL = import.meta.env.DEV
+  ? (configuredDevApiUrl || 'http://localhost:5000').replace(/\/+$/, '')
+  : ''
 
 export const API_ENDPOINTS = {
   contact: API_BASE_URL + '/api/forms/contact',
