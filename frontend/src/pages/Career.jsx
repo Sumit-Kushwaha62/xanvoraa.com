@@ -3,7 +3,7 @@ import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_career_page.mp4'
 import { useState } from 'react'
 import SiteIcon from '../components/SiteIcon'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, apiFetch } from '../config/api'
 
 const openings = [
   {
@@ -221,7 +221,7 @@ export default function Career() {
     }
 
     try {
-      const response = await fetch(API_ENDPOINTS.career, {
+      const response = await apiFetch(API_ENDPOINTS.career, {
         method: 'POST',
         body: fd,
       })

@@ -23,6 +23,28 @@ const LIMITS = {
   message: 3000,
 }
 
+function withTimeout(operation, timeoutMs, label) {
+  let timeout
+  const timeoutPromise = new Promise((_resolve, reject) => {
+    timeout = setTimeout(
+      () => reject(new Error(`${label} timed out`)),
+      timeoutMs,
+    )
+  })
+
+  return Promise.race([Promise.resolve(operation), timeoutPromise])
+    .finally(() => clearTimeout(timeout))
+}
+
+function runPostSubmissionTasks(tasks) {
+  void Promise.allSettled(tasks).then(results => {
+    results.forEach(result => {
+      if (result.status === 'rejected') {
+        console.error('Post-submission integration failed:', result.reason?.message || result.reason)
+      }
+    })
+  })
+}
 function clean(value, maxLength = 1000) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : ''
 }
@@ -78,13 +100,17 @@ async function storeResume(file) {
 
   try {
     const bytes = await readFile(file.path)
-    const { error } = await getSupabaseClient()
-      .storage
-      .from('career-resumes')
-      .upload(file.filename, bytes, {
-        contentType: 'application/pdf',
-        upsert: false,
-      })
+    const { error } = await withTimeout(
+      getSupabaseClient()
+        .storage
+        .from('career-resumes')
+        .upload(file.filename, bytes, {
+          contentType: 'application/pdf',
+          upsert: false,
+        }),
+      20_000,
+      'Resume storage',
+    )
 
     if (error) throw error
     return file.filename
@@ -119,7 +145,11 @@ async function sendAlertSafely(formType, data) {
 
 async function insertSafely(table, data) {
   try {
-    const { error } = await getSupabaseClient().from(table).insert(data)
+    const { error } = await withTimeout(
+      getSupabaseClient().from(table).insert(data),
+      15_000,
+      `${table} database insert`,
+    )
     if (error) throw error
     return true
   } catch (error) {
@@ -171,7 +201,7 @@ export async function submitContactForm(request, response) {
     })
   }
 
-  await Promise.allSettled([
+  runPostSubmissionTasks([
     appendFormRow('contact', [
       contactData.timestamp,
       contactData.name,
@@ -262,7 +292,7 @@ export async function submitCareerForm(request, response) {
     })
   }
 
-  await Promise.allSettled([
+  runPostSubmissionTasks([
     appendFormRow('career', [
       careerData.timestamp,
       careerData.name,
@@ -301,7 +331,7 @@ export async function submitNewsletterForm(request, response) {
     })
   }
 
-  await Promise.allSettled([
+  runPostSubmissionTasks([
     appendFormRow('newsletter', [timestamp, email]),
     sendAlertSafely('newsletter', { timestamp, email }),
   ])

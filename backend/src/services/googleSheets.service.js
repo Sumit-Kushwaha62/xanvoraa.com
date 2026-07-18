@@ -33,5 +33,5 @@ export async function appendFormRow(formType, values) {
     requestBody: {
       values: [values.map(safeSheetValue)],
     },
-  })
+  }, { timeout: 15_000 })
 }

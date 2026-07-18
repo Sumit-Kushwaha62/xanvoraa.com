@@ -26,3 +26,21 @@ export const API_ENDPOINTS = {
 }
 
 export { API_BASE_URL }
+export async function apiFetch(url, options = {}, timeoutMs = 30_000) {
+  const controller = new AbortController()
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs)
+
+  try {
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    })
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('The request timed out. Please try again or contact us on WhatsApp.', { cause: error })
+    }
+    throw error
+  } finally {
+    window.clearTimeout(timeout)
+  }
+}

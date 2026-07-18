@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import xanvoraaLogo from '../assets/xanvoraa-x-mark.png';
-import { API_ENDPOINTS } from '../config/api';
+import { API_ENDPOINTS, apiFetch } from '../config/api';
 
 const SHOW_SHARED_CTA = false;
 
@@ -17,7 +17,7 @@ const Footer = () => {
     setNewsletterMessage('');
 
     try {
-      const response = await fetch(API_ENDPOINTS.newsletter, {
+      const response = await apiFetch(API_ENDPOINTS.newsletter, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
