@@ -15,7 +15,11 @@
         } catch {
           theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         }
-        document.documentElement.classList.add(`${isAdmin ? 'dark' : theme}-mode`)
+        const root = document.documentElement
+        root.classList.add(`${isAdmin ? 'dark' : theme}-mode`)
+        // Enable CSS theme transitions only after the first frame has painted,
+        // so the initial render never triggers a visible flash.
+        requestAnimationFrame(() => { root.classList.add('theme-ready') })
       })()
     </script>
     <meta name="keywords" content="software development Jabalpur, web development Jabalpur, mobile app development, custom software, Xanvoraa Technologies" />

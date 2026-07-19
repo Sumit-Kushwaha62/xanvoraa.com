@@ -72,7 +72,10 @@ html.light-mode {
   --shadow-glow-accent: 0 0 40px rgba(0, 212, 170, 0.12);
 }
 
-body {
+/* Only animate theme transitions after the initial paint is complete.
+   The blocking script in index.html adds .theme-ready after a rAF so
+   the first paint never triggers a visible background-color flash. */
+html.theme-ready body {
   transition: background-color 220ms ease, color 220ms ease;
 }
 
