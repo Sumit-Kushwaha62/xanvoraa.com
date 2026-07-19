@@ -25,6 +25,14 @@ export async function appendFormRow(formType, values) {
 
   const sheets = getGoogleSheetsClient()
 
+  if (!sheets) {
+    console.warn('Google Sheets client is not initialized. Skipping append.')
+    return {
+      success: false,
+      skipped: true,
+    }
+  }
+
   await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,

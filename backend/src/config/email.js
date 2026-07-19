@@ -13,7 +13,7 @@ let transporter
 let warningLogged = false
 
 export function getEmailConfig() {
-  const missingVariables = requiredEmailEnv.filter(name => !process.env[name])
+  const missingVariables = requiredEmailEnv.filter(name => !process.env[name] || !process.env[name].trim())
 
   if (missingVariables.length > 0) {
     if (!warningLogged) {
@@ -26,16 +26,24 @@ export function getEmailConfig() {
     return null
   }
 
+  const host = process.env.SMTP_HOST.trim()
+  let pass = process.env.SMTP_PASS.trim()
+
+  // Automatically remove spaces from Gmail App Passwords (e.g. "zrao lxpg ezyr toic" -> "zraolxpgezyrtoic")
+  if (host === 'smtp.gmail.com') {
+    pass = pass.replace(/\s+/g, '')
+  }
+
   return {
-    adminEmail: process.env.ADMIN_ALERT_EMAIL,
-    smtpUser: process.env.SMTP_USER,
+    adminEmail: process.env.ADMIN_ALERT_EMAIL.trim(),
+    smtpUser: process.env.SMTP_USER.trim(),
     transport: {
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === 'true',
+      host,
+      port: Number(process.env.SMTP_PORT.trim()),
+      secure: process.env.SMTP_SECURE.trim() === 'true',
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER.trim(),
+        pass,
       },
       connectionTimeout: 10_000,
       greetingTimeout: 10_000,
