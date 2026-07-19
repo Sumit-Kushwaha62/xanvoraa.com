@@ -142,7 +142,7 @@ export async function downloadResume(req, res) {
 
     const bytes = Buffer.from(await data.arrayBuffer())
     res.setHeader('Content-Type', 'application/pdf')
-    res.setHeader('Content-Disposition', 'attachment; filename="candidate-resume.pdf"')
+    res.setHeader('Content-Disposition', 'inline; filename="candidate-resume.pdf"')
     res.setHeader('Cache-Control', 'private, no-store')
     return res.send(bytes)
   } catch (error) {

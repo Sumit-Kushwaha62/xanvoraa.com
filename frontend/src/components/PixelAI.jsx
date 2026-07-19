@@ -6,6 +6,19 @@ const INITIAL_MESSAGE = {
   text: "Hi! I'm Xanvoraa AI — I can help you learn about our services, pricing, and how Xanvoraa Technologies can help your business. What would you like to know?",
 }
 
+const HINGLISH_WORDS = /\b(?:aap|abhi|batao|bataiye|chahiye|hai|hain|kaise|karna|karo|kitna|kitni|kya|mera|mere|mujhe|nahi|nhi|samjhao)\b/i
+
+function offlineMessageFor(message) {
+  if (/[\u0900-\u097F]/u.test(message)) {
+    return 'AI सेवा अभी उपलब्ध नहीं है। कृपया थोड़ी देर बाद दोबारा कोशिश करें या WhatsApp +91 7067694391 अथवा info@xanvoraa.com पर संपर्क करें।'
+  }
+
+  if (HINGLISH_WORDS.test(message)) {
+    return 'AI service abhi available nahi hai. Thodi der baad dobara try karein, ya WhatsApp +91 7067694391 ya info@xanvoraa.com par contact karein.'
+  }
+
+  return 'The AI service is temporarily unavailable. Please try again shortly, or contact us on WhatsApp at +91 7067694391 or info@xanvoraa.com.'
+}
 const styles = `
   .pai__root {
     position: fixed;
@@ -434,7 +447,51 @@ const styles = `
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+
+  /* Light theme: chat surfaces; brand and status colors stay unchanged */
+  html.light-mode .pai__tooltip {
+    color: #252638;
+    background: #FFFFFF;
+    border-color: rgba(23, 24, 39, 0.12);
+    box-shadow: 0 10px 28px rgba(34, 38, 68, 0.14);
+  }
+  html.light-mode .pai__tooltip::after {
+    background: #FFFFFF;
+    border-color: rgba(23, 24, 39, 0.12);
+  }
+  html.light-mode .pai__window {
+    color: #171827;
+    background: radial-gradient(circle at 100% 0%, rgba(108, 99, 255, 0.1), transparent 38%), #F8F9FD;
+    border-color: rgba(108, 99, 255, 0.2);
+    box-shadow: 0 24px 70px rgba(34, 38, 68, 0.2), 0 0 35px rgba(108, 99, 255, 0.08);
+  }
+  html.light-mode .pai__header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom-color: rgba(23, 24, 39, 0.09);
+  }
+  html.light-mode .pai__title { color: #171827; }
+  html.light-mode .pai__subtitle,
+  html.light-mode .pai__close { color: #686C80; }
+  html.light-mode .pai__close:hover {
+    color: #171827;
+    background: rgba(23, 24, 39, 0.06);
+  }
+  html.light-mode .pai__message--model,
+  html.light-mode .pai__typing {
+    color: #2E3042;
+    background: #FFFFFF;
+    border-color: rgba(23, 24, 39, 0.09);
+  }
+  html.light-mode .pai__form {
+    background: rgba(255, 255, 255, 0.94);
+    border-top-color: rgba(23, 24, 39, 0.09);
+  }
+  html.light-mode .pai__input {
+    color: #171827;
+    background: #F1F2F8;
+    border-color: rgba(23, 24, 39, 0.12);
+  }
+  html.light-mode .pai__input::placeholder { color: #777C91; }  @media (prefers-reduced-motion: reduce) {
     .pai__window,
     .pai__toggle,
     .pai__send {
@@ -536,7 +593,7 @@ export default function PixelAI() {
         ...current,
         {
           role: 'model',
-          text: 'The AI service is temporarily unavailable. Please try again shortly, or contact us on WhatsApp at +91 7067694391 or info@xanvoraa.com.',
+          text: offlineMessageFor(userText),
         },
       ])
     } finally {

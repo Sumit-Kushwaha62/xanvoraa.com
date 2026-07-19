@@ -246,6 +246,29 @@
   }
 }
 
+@media (max-width: 768px) {
+  .navbar__hamburger {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .port-card__btn,
+  .maintenance-card a,
+  .contact-map__directions {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer__list-link {
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+  }
+}
 @media (max-width: 480px) {
   .brand-wordmark {
     margin-left: 8px;
@@ -3839,6 +3862,7 @@ select option {
   .career-job__right { width: 100%; justify-content: space-between; }
   .career-job__cols { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
   .career-job__desc { padding: 0 20px 20px; }
+  .career-job--open .career-job__body { max-height: 2000px; }
   .career-job--open .career-job__body > .btn-primary { margin: 0 20px 24px; }
 }
 
@@ -5663,4 +5687,70 @@ select option {
     padding: 14px 12px;
     font-size: 12px;
   }
+}
+/* Light theme: public shell and hardcoded public surfaces only */
+.navbar__theme-toggle {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  place-items: center;
+  padding: 0;
+  color: var(--text-primary);
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.navbar__theme-toggle:hover {
+  color: var(--primary-light);
+  background: rgba(108, 99, 255, 0.1);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.navbar__theme-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.navbar__theme-icon { animation: navbarThemeIconIn 220ms ease; }
+
+@keyframes navbarThemeIconIn {
+  from { opacity: 0; transform: rotate(-35deg) scale(0.72); }
+  to { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+html.light-mode .navbar {
+  background: rgba(247, 248, 252, 0.82);
+  border-bottom-color: rgba(23, 24, 39, 0.08);
+  box-shadow: 0 1px 16px rgba(34, 38, 68, 0.08);
+}
+
+html.light-mode .navbar--scrolled,
+html.light-mode .navbar__mobile {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(23, 24, 39, 0.1);
+}
+
+html.light-mode .brand-wordmark__name { color: var(--text-primary); }
+html.light-mode .navbar__hamburger span { background: var(--text-primary); }
+html.light-mode select option { background: #FFFFFF; color: var(--text-primary); }
+
+html.light-mode .port-modal__box,
+html.light-mode .contact-form,
+html.light-mode .career-job,
+html.light-mode .pricing-card,
+html.light-mode .faq-item,
+html.light-mode .about-team-card,
+html.light-mode .compare-table,
+html.light-mode .footer__newsletter-form {
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__theme-toggle,
+  .navbar__theme-icon { transition: none; animation: none; }
 }

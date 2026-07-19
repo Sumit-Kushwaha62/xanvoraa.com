@@ -5,20 +5,32 @@ const PROMPT = [
   '',
   'Verified business facts:',
   '- Core services: Web Development, App Development, AI & Automation, WordPress Development, Maintenance & Support, and Custom Software Solutions.',
-  '- Public starting prices: landing pages INR 19,999; business websites INR 39,999; e-commerce INR 79,999; custom web applications INR 149,999; mobile apps INR 199,999; hospital or school ERP INR 249,999; AI chatbot and automation INR 49,999; AI voice agents INR 79,999; UI/UX design INR 24,999; maintenance INR 7,999 per month.',
-  '- Every final quote depends on scope, features, integrations and timeline.',
+  '- Website packages: Launch starts at INR 5,999; Growth starts at INR 9,999; Scale is a custom quote.',
+  '- Service price guide: Landing Page INR 2,999+; Business Website INR 5,999+; E-commerce Website INR 29,999+; Custom Web Application INR 49,999+; Mobile Application INR 19,999+; Hospital / School ERP INR 49,999+; AI Chatbot & Automation INR 9,999+; AI Voice Agent INR 9,999+; WordPress Development INR 9,999+; Maintenance & Support INR 999/month+.',
+  '- Maintenance plans: Essential Care INR 1,999/month; Business Care INR 4,999/month; Priority Care INR 9,999+/month.',
+  '- Paid discovery starts at INR 4,999 for small projects and ranges from INR 9,999 to INR 24,999 for custom software.',
+  '- AI and voice projects may include a setup fee, monthly management, and separate API or call usage. The agreed management margin is 15-25%.',
+  '- All displayed amounts are starting prices, not final quotes. Final pricing depends on scope, features, integrations, content, timeline and complexity.',
   '- Contact and WhatsApp: +91 7067694391.',
   '- Business email: info@xanvoraa.com.',
   '- Address: Right Town, Jabalpur, Madhya Pradesh, India.',
   '',
   'Rules:',
-  '- Reply in Hindi or Hinglish when the user writes Hindi or Hinglish; otherwise reply in English.',
+  '- Follow the required response language supplied after this prompt. Determine it from the latest user message only, not earlier conversation messages.',
   '- Be concise, professional and helpful.',
-  '- Use only the verified facts above. Never invent clients, guarantees, discounts, delivery dates or capabilities.',
-  '- For exact quotes, ask for requirements and direct the user to the contact form or WhatsApp.',
+  '- Quote only the verified prices above and preserve the words starts at, range, per month, plus sign, and custom quote where applicable.',
+  '- Never invent or estimate another amount, discount, package, client, guarantee, delivery date or capability.',
+  '- If a requested price is not listed, say that it requires a custom quote; ask for requirements and direct the user to the contact form or WhatsApp.',
   '- Do not claim that Xanvoraa provides a service that is not listed above.',
 ].join('\n')
 
+const HINGLISH_WORDS = /\b(?:aap|abhi|batao|bataiye|chahiye|hai|hain|kaise|karna|karo|kitna|kitni|kya|mera|mere|mujhe|nahi|nhi|samjhao)\b/i
+
+export function detectReplyLanguage(message) {
+  if (/[\u0900-\u097F]/u.test(message)) return 'Hindi in Devanagari script'
+  if (HINGLISH_WORDS.test(message)) return 'Hinglish using the Latin script'
+  return 'English'
+}
 async function history(sessionId) {
   const { data, error } = await getSupabaseClient()
     .from('chatbot_conversations')
@@ -66,6 +78,13 @@ export async function sendChatMessage(request, response) {
       console.error('Unable to load chatbot conversation:', error.message)
     }
 
+    const replyLanguage = detectReplyLanguage(message)
+    const languageInstruction = [
+      '',
+      'Required response language for this turn: ' + replyLanguage + '.',
+      'Reply entirely in that language. Do not switch languages unless the latest user message does.',
+    ].join('\n')
+
     const contents = [
       ...previous.map(item => ({
         role: item.role,
@@ -83,9 +102,9 @@ export async function sendChatMessage(request, response) {
           'x-goog-api-key': process.env.GEMINI_API_KEY,
         },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: PROMPT }] },
+          systemInstruction: { parts: [{ text: PROMPT + languageInstruction }] },
           contents,
-          generationConfig: { temperature: 0.5, maxOutputTokens: 300 },
+          generationConfig: { temperature: 0.2, maxOutputTokens: 300 },
         }),
         signal: AbortSignal.timeout(15000),
       },

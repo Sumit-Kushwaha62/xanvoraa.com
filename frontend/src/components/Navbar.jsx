@@ -1,10 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '../ThemeContext';
 import xanvoraaLogo from '../assets/xanvoraa-x-mark.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +57,19 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar__actions">
+          <button
+            type="button"
+            className="navbar__theme-toggle"
+            onClick={toggleTheme}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDark ? (
+              <Moon key="dark" className="navbar__theme-icon" size={18} aria-hidden="true" />
+            ) : (
+              <Sun key="light" className="navbar__theme-icon" size={18} aria-hidden="true" />
+            )}
+          </button>
           <Link to="/contact" className="navbar__cta">
             Get Started
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

@@ -62,6 +62,9 @@ function validMobile(input) {
   return digits.length >= 7 && digits.length <= 15
 }
 
+function normalizeHttpUrl(input) {
+  return /^www\./i.test(input) ? `https://${input}` : input
+}
 function validHttpUrl(input) {
   if (!input) return true
 
@@ -227,8 +230,8 @@ export async function submitCareerForm(request, response) {
     position: value(request, 'position'),
     experience: value(request, 'experience'),
     location: value(request, 'location'),
-    portfolio: value(request, 'portfolio'),
-    externalResumeLink: value(request, 'resumeLink'),
+    portfolio: normalizeHttpUrl(value(request, 'portfolio')),
+    externalResumeLink: normalizeHttpUrl(value(request, 'resumeLink')),
     message: value(request, 'message'),
   }
 

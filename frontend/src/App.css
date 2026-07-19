@@ -27,3 +27,18 @@ main {
 .legal-page__content h2:first-of-type { margin-top: 24px; }
 .legal-page__content p { color: #bec8d8; line-height: 1.8; }
 .legal-page__back { display: inline-flex; margin-top: 30px; font-weight: 700; text-decoration: none; }
+/* Light theme: legal pages retain their structure with accessible contrast */
+html.light-mode .legal-page {
+  background: radial-gradient(circle at 80% 0%, rgba(20, 111, 255, 0.1), transparent 34%), var(--bg-dark);
+  color: var(--text-primary);
+}
+html.light-mode .legal-page__eyebrow,
+html.light-mode .legal-page h1 span,
+html.light-mode .legal-page a { color: #4F46E5; }
+html.light-mode .legal-page__updated { color: var(--text-muted); }
+html.light-mode .legal-page__content {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(65, 76, 110, 0.15);
+  box-shadow: 0 30px 80px rgba(34, 38, 68, 0.11);
+}
+html.light-mode .legal-page__content p { color: var(--text-secondary); }

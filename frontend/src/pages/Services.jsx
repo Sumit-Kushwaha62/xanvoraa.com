@@ -1,6 +1,7 @@
 import Seo from '../components/Seo'
 // import { useState } from 'react'
 import servicesHeroVideo from '../assets/bg_serviess_page.mp4'
+import servicesHeroPoster from '../assets/bg_serviess_page_poster.webp'
 // import { Link } from 'react-router-dom'
 
 // const services = [
@@ -503,7 +504,8 @@ export default function Services() {
             muted
             loop
             playsInline
-            poster=""
+            preload="metadata"
+            poster={servicesHeroPoster}
           >
             {/* Uses a free-to-use abstract tech video from Pexels CDN */}
             <source src={servicesHeroVideo} type="video/mp4" />
@@ -1247,7 +1249,32 @@ export default function Services() {
         }
 
         /* ─── Responsive ─── */
-        @media (max-width: 1200px) {
+
+        /* Light theme: non-video service surfaces only */
+        html.light-mode .srv-intro { border-bottom-color: rgba(23,24,39,0.1); }
+        html.light-mode .srv-card {
+          background: rgba(255,255,255,0.88);
+          border-color: rgba(23,24,39,0.1);
+          box-shadow: 0 12px 34px rgba(34,38,68,0.08);
+        }
+        html.light-mode .srv-card:hover {
+          box-shadow: 0 16px 44px rgba(34,38,68,0.14), 0 0 0 1px var(--c);
+        }
+        html.light-mode .srv-card__num { color: rgba(23,24,39,0.18); }
+        html.light-mode .srv-card__icon,
+        html.light-mode .srv-card__tech-tag {
+          background: rgba(23,24,39,0.035);
+          border-color: rgba(23,24,39,0.09);
+        }
+        html.light-mode .srv-card__divider { background: rgba(23,24,39,0.09); }
+        html.light-mode .srv-card:hover .srv-card__tech-tag { border-color: rgba(23,24,39,0.16); }
+        html.light-mode .srv-process {
+          background: rgba(108,99,255,0.025);
+          border-color: rgba(23,24,39,0.09);
+        }
+        html.light-mode .srv-cta {
+          background: linear-gradient(135deg, #F5F6FC 0%, #EFEEFF 50%, #F5F6FC 100%);
+        }        @media (max-width: 1200px) {
           .srv-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 900px) {

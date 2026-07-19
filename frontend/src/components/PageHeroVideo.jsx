@@ -1,4 +1,4 @@
-export default function PageHeroVideo({ src }) {
+export default function PageHeroVideo({ src, poster }) {
   return (
     <div className="page-hero__media" aria-hidden="true">
       <video
@@ -8,6 +8,7 @@ export default function PageHeroVideo({ src }) {
         loop
         playsInline
         preload="metadata"
+        poster={poster}
       >
         <source src={src} type="video/mp4" />
       </video>

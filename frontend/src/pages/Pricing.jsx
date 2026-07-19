@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_pricing_page.mp4'
+import pageHeroPoster from '../assets/bg_pricing_page_poster.webp'
 
 const whatsappNumber = '917067694391'
 
@@ -88,7 +89,7 @@ export default function Pricing() {
         path="/pricing"
       />
       <section className="page-hero">
-        <PageHeroVideo src={pageHeroVideo} />
+        <PageHeroVideo src={pageHeroVideo} poster={pageHeroPoster} />
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container">

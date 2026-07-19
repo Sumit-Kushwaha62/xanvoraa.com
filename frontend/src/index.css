@@ -55,6 +55,30 @@
   --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+html.light-mode {
+  --bg-dark: #F7F8FC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F0F2FA;
+  --bg-glass: rgba(20, 24, 45, 0.045);
+  --text-primary: #171827;
+  --text-secondary: #52566B;
+  --text-muted: #777C91;
+  --gradient-hero: linear-gradient(135deg, #F7F8FC 0%, #EFEEFF 50%, #F7F8FC 100%);
+  --gradient-card: linear-gradient(135deg, rgba(108, 99, 255, 0.08) 0%, rgba(0, 212, 170, 0.045) 100%);
+  --border: rgba(23, 24, 39, 0.11);
+  --border-hover: rgba(108, 99, 255, 0.42);
+  --shadow-card: 0 8px 32px rgba(34, 38, 68, 0.12);
+  --shadow-glow: 0 0 40px rgba(108, 99, 255, 0.12);
+  --shadow-glow-accent: 0 0 40px rgba(0, 212, 170, 0.12);
+}
+
+body {
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
 html {
   font-size: 16px;
   scroll-behavior: smooth;

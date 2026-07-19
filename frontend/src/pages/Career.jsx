@@ -1,6 +1,7 @@
 import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_career_page.mp4'
+import pageHeroPoster from '../assets/bg_career_page_poster.webp'
 import { useState } from 'react'
 import SiteIcon from '../components/SiteIcon'
 import { API_ENDPOINTS, apiFetch } from '../config/api'
@@ -167,6 +168,10 @@ const perks = [
   { icon: 'sparkles', title: 'Fun Culture', desc: 'Young team, open culture, no corporate BS' },
 ]
 
+const normalizePortfolioUrl = value => {
+  const trimmed = value.trim()
+  return /^www\./i.test(trimmed) ? `https://${trimmed}` : trimmed
+}
 const EMPTY_FORM = {
   name: '',
   email: '',
@@ -213,7 +218,7 @@ export default function Career() {
     fd.append('position', form.position)
     fd.append('experience', form.experience.trim())
     fd.append('location', form.location.trim())
-    fd.append('portfolio', form.portfolio.trim())
+    fd.append('portfolio', normalizePortfolioUrl(form.portfolio))
     fd.append('message', form.message.trim())
 
     if (form.resume) {
@@ -253,7 +258,7 @@ export default function Career() {
 
       {/* ── HERO ── */}
       <section className="page-hero">
-        <PageHeroVideo src={pageHeroVideo} />
+        <PageHeroVideo src={pageHeroVideo} poster={pageHeroPoster} />
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container">
@@ -469,7 +474,7 @@ export default function Career() {
                     </div>
                     <div className="contact-form__field">
                       <label className="contact-form__label">Portfolio / GitHub / LinkedIn URL</label>
-                      <input type="url" name="portfolio" value={form.portfolio} onChange={handleChange} placeholder="https://github.com/yourname" />
+                      <input type="text" inputMode="url" name="portfolio" value={form.portfolio} onChange={handleChange} placeholder="https://github.com/yourname or www.example.com" autoCapitalize="none" autoCorrect="off" />
                     </div>
                     <div className="contact-form__field">
                       <label className="contact-form__label">Resume PDF</label>

@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -17,11 +18,23 @@ import { AdminAuthProvider } from './admin/AdminAuthContext';
 import ProtectedAdminRoute from './admin/ProtectedAdminRoute';
 import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
+import { useTheme } from './ThemeContext';
 import './App.css';
 import './style.css';
 import './admin.css';
 // import './style1.css';
 
+
+function ThemeRouteSync() {
+  const { pathname } = useLocation()
+  const { setPublicThemeEnabled } = useTheme()
+
+  useLayoutEffect(() => {
+    setPublicThemeEnabled(!pathname.startsWith('/admin'))
+  }, [pathname, setPublicThemeEnabled])
+
+  return null
+}
 function PublicLayout() {
   return (
     <div className="app-container">
@@ -40,6 +53,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ThemeRouteSync />
       <AdminAuthProvider>
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />

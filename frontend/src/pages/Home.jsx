@@ -9,7 +9,7 @@ import somyaImage from '../assets/somya shukla.jpeg'
 import heroVideo2 from '../assets/bg_video02.mp4'
 
 const SHOW_ARCHIVED_HOME_SECTIONS = false
-import heroPoster from '../assets/hero.png'
+import heroPoster from '../assets/bg_video02_poster.webp'
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 

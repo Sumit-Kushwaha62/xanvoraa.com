@@ -1,6 +1,7 @@
 import Seo from '../components/Seo'
 import PageHeroVideo from '../components/PageHeroVideo'
 import pageHeroVideo from '../assets/bg_contact_page.mp4'
+import pageHeroPoster from '../assets/bg_contact_page_poster.webp'
 import { useState } from 'react'
 import SiteIcon from '../components/SiteIcon'
 import { API_ENDPOINTS, apiFetch } from '../config/api'
@@ -125,7 +126,7 @@ export default function Contact() {
 
       {/* ── HERO ── */}
       <section className="page-hero">
-        <PageHeroVideo src={pageHeroVideo} />
+        <PageHeroVideo src={pageHeroVideo} poster={pageHeroPoster} />
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container">

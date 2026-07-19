@@ -3,12 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const isAdmin = window.location.pathname.startsWith('/admin')
+        let theme = 'dark'
+        try {
+          const stored = window.localStorage.getItem('xanvoraa-theme')
+          theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        } catch {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.classList.add(`${isAdmin ? 'dark' : theme}-mode`)
+      })()
+    </script>
     <title>Software &amp; Web Development Company in Jabalpur</title>
     <meta name="description" content="Xanvoraa Technologies builds custom software, websites and mobile apps for hospitals, schools, startups and enterprises in Jabalpur, India." />
     <meta name="keywords" content="software development Jabalpur, web development Jabalpur, mobile app development, custom software, Xanvoraa Technologies" />
     <link rel="canonical" href="https://xanvoraa.com" />
 
-    <link rel="icon" type="image/png" href="/xanvoraa-favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/xanvoraa-favicon.png" />
     <meta name="theme-color" content="#0a0a0f" />
 
