@@ -8,6 +8,7 @@ import formsRoutes from './routes/forms.routes.js'
 import healthRouter from './routes/health.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 import chatRoutes from './routes/chat.routes.js'
+import { getEmailTransporter } from './config/email.js'
 
 dotenv.config()
 
@@ -133,6 +134,27 @@ app.use((error, _request, response, _next) => {
 
 const server = app.listen(port, () => {
   console.log('Xanvoraa backend is running on port ' + port)
+
+  try {
+    if (process.env.RESEND_API_KEY?.trim()) {
+      console.log('Resend email alerts are configured (HTTP API mode)')
+    } else {
+      const transporter = getEmailTransporter()
+      if (transporter) {
+        transporter.verify((error, success) => {
+          if (error) {
+            console.error('SMTP Connection verification failed on startup:', error.message || error)
+          } else {
+            console.log('SMTP Server is ready to send email alerts')
+          }
+        })
+      } else {
+        console.warn('SMTP transporter not initialized. Email configuration is incomplete.')
+      }
+    }
+  } catch (err) {
+    console.error('Failed to verify email configuration on startup:', err.message)
+  }
 })
 
 server.requestTimeout = 20_000

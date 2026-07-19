@@ -57,16 +57,6 @@ export async function sendFormAlert(formType, data) {
     throw new Error(`Unsupported email alert form type: ${formType}`)
   }
 
-  const emailConfig = getEmailConfig()
-  const emailTransporter = getEmailTransporter()
-
-  if (!emailConfig || !emailTransporter) {
-    return {
-      sent: false,
-      skipped: true,
-    }
-  }
-
   const timestamp = data.timestamp || new Date().toISOString()
   const textFields = formConfig.fields.map(
     ([label, key]) => `${label}: ${displayValue(data[key])}`,
@@ -77,23 +67,76 @@ export async function sendFormAlert(formType, data) {
       `<td style="padding:6px 0;white-space:pre-wrap">${escapeHtml(data[key])}</td></tr>`,
   )
 
+  const textBody = [
+    formConfig.subject,
+    `Timestamp: ${timestamp}`,
+    '',
+    ...textFields,
+  ].join('\n')
+
+  const htmlBody = `
+    <h2>${escapeHtml(formConfig.subject)}</h2>
+    <p><strong>Timestamp:</strong> ${escapeHtml(timestamp)}</p>
+    <table cellspacing="0" cellpadding="0">
+      <tbody>${htmlFields.join('')}</tbody>
+    </table>
+  `
+
+  const resendApiKey = process.env.RESEND_API_KEY?.trim()
+  const adminEmail = process.env.ADMIN_ALERT_EMAIL?.trim()
+
+  if (resendApiKey) {
+    if (!adminEmail) {
+      throw new Error('ADMIN_ALERT_EMAIL is not configured')
+    }
+
+    const fromAddress = process.env.RESEND_FROM_EMAIL?.trim() || 'onboarding@resend.dev'
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromAddress,
+        to: [adminEmail],
+        subject: formConfig.subject,
+        text: textBody,
+        html: htmlBody,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`Resend API error: ${response.status} - ${errorText}`)
+    }
+
+    const result = await response.json()
+    return {
+      sent: true,
+      skipped: false,
+      messageId: result.id,
+    }
+  }
+
+  // Fallback to SMTP
+  const emailConfig = getEmailConfig()
+  const emailTransporter = getEmailTransporter()
+
+  if (!emailConfig || !emailTransporter) {
+    return {
+      sent: false,
+      skipped: true,
+    }
+  }
+
   const info = await emailTransporter.sendMail({
     from: emailConfig.smtpUser,
     to: emailConfig.adminEmail,
     subject: formConfig.subject,
-    text: [
-      formConfig.subject,
-      `Timestamp: ${timestamp}`,
-      '',
-      ...textFields,
-    ].join('\n'),
-    html: `
-      <h2>${escapeHtml(formConfig.subject)}</h2>
-      <p><strong>Timestamp:</strong> ${escapeHtml(timestamp)}</p>
-      <table cellspacing="0" cellpadding="0">
-        <tbody>${htmlFields.join('')}</tbody>
-      </table>
-    `,
+    text: textBody,
+    html: htmlBody,
   })
 
   return {
