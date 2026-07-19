@@ -138,7 +138,7 @@ export default function About() {
                   { v: '100%', l: 'Happy Clients' },
                   { v: '8+', l: 'Industries' },
                   { v: '19', l: 'Core Team Members' },
-                  { v: '7+', l: 'Years Experience' },
+                  { v: '4+', l: 'Years Experience' },
                   { v: '100%', l: 'Source Code Ownership' },
                 ].map((s, i) => (
                   <div key={i} className="about-stat">

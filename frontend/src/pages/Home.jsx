@@ -19,8 +19,8 @@ import heroPoster from '../assets/bg_video02_poster.webp'
 
 const stats = [
   { value: 139, suffix: '+', label: 'Projects Delivered' },
-  { value: 100, suffix: '%', label: 'Happy Clients' },
-  { value: 7, suffix: '+', label: 'Years Experience' },
+  { value: 24, suffix: '/7', label: 'Support' },
+  { value: 4, suffix: '+', label: 'Years Experience' },
   { value: 100, suffix: '%', label: 'Client Satisfaction' },
 ]
 

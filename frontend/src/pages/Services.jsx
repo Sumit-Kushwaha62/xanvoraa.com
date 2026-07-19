@@ -555,7 +555,7 @@ export default function Services() {
 
             {/* Stats row */}
             <div className="srv-hero__stats">
-              {[['50+', 'Projects Delivered'], ['4.9★', 'Client Rating'], ['8', 'Core Services'], ['2yr+', 'Industry Exp']].map(([num, label]) => (
+              {[['139+', 'Projects Delivered'], ['4.9★', 'Client Rating'], ['8+', 'Core Services'], ['4yr+', 'Industry Exp']].map(([num, label]) => (
                 <div key={label} className="srv-hero__stat">
                   <span className="srv-hero__stat-num">{num}</span>
                   <span className="srv-hero__stat-label">{label}</span>

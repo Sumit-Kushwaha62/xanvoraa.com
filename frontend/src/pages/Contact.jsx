@@ -39,9 +39,9 @@ const contactMethods = [
   {
     icon: 'location',
     title: 'Location',
-    desc: 'Right Town, Jabalpur, MP',
+    desc: 'Wright Town, Jabalpur, MP',
     action: 'Get Directions',
-    href: 'https://www.google.com/maps/search/?api=1&query=Right+Town%2C+Jabalpur%2C+Madhya+Pradesh',
+    href: 'https://www.google.com/maps/search/?api=1&query=Wright+Town%2C+Jabalpur%2C+Madhya+Pradesh',
     color: '#FF6B6B',
   },
 ]
@@ -381,11 +381,11 @@ export default function Contact() {
             <div className="contact-map__header">
               <div>
                 <h2 className="contact-map__title">Visit Our Office</h2>
-                <p className="contact-map__address">Right Town, Jabalpur, Madhya Pradesh</p>
+                <p className="contact-map__address">Wright Town, Jabalpur, Madhya Pradesh</p>
               </div>
               <a
                 className="contact-map__directions"
-                href="https://www.google.com/maps/search/?api=1&query=Right+Town%2C+Jabalpur%2C+Madhya+Pradesh"
+                href="https://www.google.com/maps/search/?api=1&query=Wright+Town%2C+Jabalpur%2C+Madhya+Pradesh"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -394,8 +394,8 @@ export default function Contact() {
             </div>
             <iframe
               className="contact-map__frame"
-              title="Xanvoraa office location in Right Town, Jabalpur"
-              src="https://www.google.com/maps?q=Right%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&t=k&z=16&output=embed"
+              title="Xanvoraa office location in Wright Town, Jabalpur"
+              src="https://www.google.com/maps?q=Wright%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&t=k&z=16&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
