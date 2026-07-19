@@ -13,15 +13,11 @@ function readAppliedTheme() {
   if (root.classList.contains('light-mode')) return 'light'
   if (root.classList.contains('dark-mode')) return 'dark'
 
-  // Fallback: derive from localStorage / OS preference (same logic as the
-  // inline script) and apply immediately so the rest of the app stays in sync.
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY)
     if (stored === 'light' || stored === 'dark') return stored
-  } catch {
-    // Continue with the operating-system preference when storage is unavailable.
-  }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  } catch {}
+  return 'dark'
 }
 
 export function ThemeProvider({ children }) {

@@ -9,14 +9,19 @@
         let theme = 'dark'
         try {
           const stored = window.localStorage.getItem('xanvoraa-theme')
-          theme = stored === 'light' || stored === 'dark'
-            ? stored
-            : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        } catch {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        }
+          if (stored === 'light' || stored === 'dark') {
+            theme = stored
+          }
+        } catch {}
         const root = document.documentElement
-        root.classList.add(`${isAdmin ? 'dark' : theme}-mode`)
+        const activeTheme = isAdmin ? 'dark' : theme
+        if (activeTheme === 'light') {
+          root.classList.remove('dark-mode')
+          root.classList.add('light-mode')
+        } else {
+          root.classList.remove('light-mode')
+          root.classList.add('dark-mode')
+        }
         // Enable CSS theme transitions only after the first frame has painted,
         // so the initial render never triggers a visible flash.
         requestAnimationFrame(() => { root.classList.add('theme-ready') })
