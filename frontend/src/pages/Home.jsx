@@ -7,6 +7,10 @@ import riyaImage from '../assets/riya jyotishi.jpeg'
 import kashishImage from '../assets/kashish sahu.jpeg'
 import somyaImage from '../assets/somya shukla.jpeg'
 import heroVideo2 from '../assets/bg_video02.mp4'
+import rameshAvatar from '../assets/testimonials/ramesh-sharma-avatar.webp'
+import priyaAvatar from '../assets/testimonials/priya-verma-avatar.webp'
+import ankitAvatar from '../assets/testimonials/ankit-jain-avatar.webp'
+import sunitaAvatar from '../assets/testimonials/sunita-patel-avatar.webp'
 
 const SHOW_ARCHIVED_HOME_SECTIONS = false
 import heroPoster from '../assets/bg_video02_poster.webp'
@@ -161,7 +165,7 @@ const testimonials = [
     role: 'Director, Sharma Hospital, Jabalpur',
     text: 'Xanvoraa Technologies built our HMS from scratch. The OPD and billing system saved us 3 hours daily. Excellent team, always available on WhatsApp.',
     rating: 5,
-    avatar: 'RS',
+    image: rameshAvatar,
     color: '#6C63FF',
   },
   {
@@ -169,7 +173,7 @@ const testimonials = [
     role: 'Principal, Sunrise Academy',
     text: 'Our school ERP is working flawlessly. Fee collection is now fully automated and parents love the app. Highly recommend Xanvoraa Technologies!',
     rating: 5,
-    avatar: 'PV',
+    image: priyaAvatar,
     color: '#00D4AA',
   },
   {
@@ -177,7 +181,7 @@ const testimonials = [
     role: 'Founder, QuickMart',
     text: 'They delivered our eCommerce platform in just 3 weeks. Clean code, great design, and zero bugs at launch. Best decision we made!',
     rating: 5,
-    avatar: 'AJ',
+    image: ankitAvatar,
     color: '#FF6B6B',
   },
   {
@@ -185,7 +189,7 @@ const testimonials = [
     role: 'CEO, SP Travels, Bhopal',
     text: 'Website redesign was exactly what we needed. Traffic increased 3x after launch. SEO results are amazing. Very professional team.',
     rating: 5,
-    avatar: 'SP',
+    image: sunitaAvatar,
     color: '#FFB347',
   },
 ]
@@ -575,7 +579,7 @@ export default function Home() {
                     className="testimonial-card__avatar"
                     style={{ background: `${t.color}22`, color: t.color }}
                   >
-                    {t.avatar}
+                    <img src={t.image} alt={`${t.name} — illustrated profile avatar`} />
                   </div>
                   <div>
                     <p className="testimonial-card__name">{t.name}</p>

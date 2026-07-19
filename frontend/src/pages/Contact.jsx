@@ -395,7 +395,7 @@ export default function Contact() {
             <iframe
               className="contact-map__frame"
               title="Xanvoraa office location in Right Town, Jabalpur"
-              src="https://www.google.com/maps?q=Right%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&output=embed"
+              src="https://www.google.com/maps?q=Right%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&t=k&z=16&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen

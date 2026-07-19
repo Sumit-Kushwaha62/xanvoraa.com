@@ -1498,6 +1498,14 @@ END TEMPORARILY DISABLED: RECENT PROJECTS */
   font-size: 14px;
   font-weight: 800;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.testimonial-card__avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .testimonial-card__name {
@@ -5753,4 +5761,47 @@ html.light-mode .footer__newsletter-form {
 @media (prefers-reduced-motion: reduce) {
   .navbar__theme-toggle,
   .navbar__theme-icon { transition: none; animation: none; }
+}
+
+/* LARGE DESKTOP PUBLIC-SITE SCALE */
+@media (min-width: 1440px) {
+  .app-container {
+    --container: 1400px;
+    --section-pad: 112px 0;
+  }
+
+  .app-container .hero__title,
+  .app-container .srv-hero__title,
+  .app-container .page-hero__title,
+  .app-container .portfolio-hero .page-hero__title {
+    font-size: clamp(52px, 3.35vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+  }
+
+  .app-container .hero__subtitle,
+  .app-container .srv-hero__sub,
+  .app-container .page-hero__sub,
+  .app-container .portfolio-hero .page-hero__sub {
+    max-width: 740px;
+    font-size: 18px;
+  }
+
+  .app-container .section-title {
+    font-size: clamp(38px, 2.5vw, 46px);
+  }
+
+  .app-container .section-subtitle {
+    max-width: 640px;
+    font-size: 17px;
+  }
+
+  .app-container .btn-primary,
+  .app-container .btn-outline {
+    font-size: 16px;
+  }
+
+  .app-container .navbar__link {
+    font-size: 14px;
+  }
 }
