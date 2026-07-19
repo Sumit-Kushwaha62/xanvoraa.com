@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useAdminAuth } from './AdminAuthContext'
+import { Helmet } from 'react-helmet-async'
+
 
 export default function AdminLogin() {
   const { admin, authLoading, login } = useAdminAuth()
@@ -31,6 +33,9 @@ export default function AdminLogin() {
 
   return (
     <div className="admin-login">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <form className="admin-login__card" onSubmit={handleSubmit}>
         <h1 className="admin-login__title">Xanvoraa Admin</h1>
         <p className="admin-login__sub">Sign in to access the dashboard</p>

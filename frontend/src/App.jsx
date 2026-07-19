@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -32,6 +32,14 @@ function ThemeRouteSync() {
   useLayoutEffect(() => {
     setPublicThemeEnabled(!pathname.startsWith('/admin'))
   }, [pathname, setPublicThemeEnabled])
+
+  useEffect(() => {
+    // Wait a brief moment to ensure DOM/Helmet has updated before dispatching prerender event
+    const timer = setTimeout(() => {
+      document.dispatchEvent(new Event('prerender-trigger'))
+    }, 150)
+    return () => clearTimeout(timer)
+  }, [pathname])
 
   return null
 }

@@ -2,6 +2,7 @@ import { createElement, useCallback, useEffect, useState } from 'react'
 import xanvoraaLogo from '../assets/xanvoraa-x-mark.png'
 import { API_ENDPOINTS } from '../config/api'
 import { useAdminAuth } from './AdminAuthContext'
+import { Helmet } from 'react-helmet-async'
 import ConversationPanel from './ConversationPanel'
 import SubmissionDetailModal from './SubmissionDetailModal'
 import { downloadCsv } from './csvExport'
@@ -29,6 +30,9 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-dashboard">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <header className="admin-header">
         <div className="admin-header__brand"><img src={xanvoraaLogo} alt="Xanvoraa Technologies" /><span><strong>Xanvoraa</strong><small>Admin Dashboard</small></span></div>
         <div className="admin-header__right">
