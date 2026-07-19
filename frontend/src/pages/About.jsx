@@ -82,8 +82,8 @@ export default function About() {
   return (
     <div className="about-page">
       <Seo
-        title="About Xanvoraa | Software Team in Jabalpur"
-        description="Meet Xanvoraa Technologies, a Jabalpur software team building reliable websites, mobile apps and custom digital products."
+        title="About Xanvoraa Technologies | Software Team in Jabalpur"
+        description="Meet Xanvoraa Technologies, a Jabalpur software team building reliable websites, mobile apps, and custom digital products."
         path="/about"
       />
 

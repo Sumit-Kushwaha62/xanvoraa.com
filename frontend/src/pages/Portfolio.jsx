@@ -144,8 +144,8 @@ export default function Portfolio() {
   return (
     <div className="portfolio-page">
       <Seo
-        title="Software & Web Development Portfolio | Xanvoraa"
-        description="See custom software, hospital systems, school ERP, mobile app and website projects delivered by Xanvoraa Technologies."
+        title="Our Portfolio - Xanvoraa Technologies | Software Projects"
+        description="Xanvoraa Technologies showcases custom software, hospital systems, school ERP, mobile apps, and custom websites."
         path="/portfolio"
       />
 

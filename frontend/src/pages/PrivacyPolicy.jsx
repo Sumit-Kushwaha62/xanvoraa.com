@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <section className="legal-page">
       <Seo
         title="Privacy Policy | Xanvoraa Technologies"
-        description="Learn how Xanvoraa Technologies collects, uses, stores and protects information submitted through our website."
+        description="Xanvoraa Technologies Privacy Policy explains how we collect, use, store, and protect information submitted through our website."
         path="/privacy-policy"
       />
       <div className="container legal-page__inner">

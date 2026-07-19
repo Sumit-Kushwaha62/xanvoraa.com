@@ -251,8 +251,8 @@ export default function Career() {
   return (
     <div className="career-page">
       <Seo
-        title="Software Development Careers in Jabalpur | Xanvoraa"
-        description="Explore frontend, backend, design and software development careers with Xanvoraa Technologies in Jabalpur or remotely."
+        title="Careers at Xanvoraa Technologies | Software Development Jobs"
+        description="Xanvoraa Technologies offers frontend, backend, design, and software development careers in Jabalpur and remote roles."
         path="/career"
       />
 

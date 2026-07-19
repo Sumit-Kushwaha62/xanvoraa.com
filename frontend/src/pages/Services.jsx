@@ -489,8 +489,8 @@ export default function Services() {
   return (
     <div className="srv-page">
       <Seo
-        title="Software Development Services | Xanvoraa"
-        description="Explore web development, mobile apps, AI automation, WordPress, maintenance and custom software services from our Jabalpur team."
+        title="Software & Web Development Services | Xanvoraa Technologies"
+        description="Xanvoraa Technologies provides software development, mobile apps, AI automation, and custom web development services."
         path="/services"
       />
 

@@ -298,8 +298,8 @@ export default function Home() {
   return (
     <div className="home">
       <Seo
-        title="Software & Web Development Company in Jabalpur"
-        description="Xanvoraa builds custom software, websites and mobile apps for hospitals, schools, startups and enterprises in Jabalpur, India."
+        title="Xanvoraa Technologies | Software & Web Development Company in Jabalpur"
+        description="Xanvoraa Technologies builds custom software, websites, and mobile apps for hospitals, schools, startups, and enterprises."
         path="/"
       />
 

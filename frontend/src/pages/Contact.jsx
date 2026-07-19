@@ -119,8 +119,8 @@ export default function Contact() {
   return (
     <div className="contact-page">
       <Seo
-        title="Contact Xanvoraa Technologies | Jabalpur"
-        description="Contact Xanvoraa Technologies in Jabalpur for custom software, web development, mobile apps, AI automation and support."
+        title="Contact Xanvoraa Technologies | Software Company in Jabalpur"
+        description="Contact Xanvoraa Technologies in Jabalpur for custom software, web development, mobile apps, AI automation, and IT support."
         path="/contact"
       />
 

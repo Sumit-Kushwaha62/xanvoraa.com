@@ -84,8 +84,8 @@ export default function Pricing() {
   return (
     <div className="pricing-page">
       <Seo
-        title="Software & Website Development Pricing | Xanvoraa"
-        description="View transparent starting prices for business websites, ecommerce, mobile apps, custom software and ongoing support."
+        title="Services Pricing - Xanvoraa Technologies"
+        description="Xanvoraa Technologies offers transparent starting prices for custom websites, e-commerce, mobile apps, and custom software."
         path="/pricing"
       />
       <section className="page-hero">

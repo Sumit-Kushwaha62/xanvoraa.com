@@ -6,7 +6,7 @@ export default function TermsOfService() {
     <section className="legal-page">
       <Seo
         title="Terms of Service | Xanvoraa Technologies"
-        description="Read the terms governing use of the Xanvoraa Technologies website and information about project agreements."
+        description="Xanvoraa Technologies Terms of Service govern the use of our website and outline our project agreements."
         path="/terms"
       />
       <div className="container legal-page__inner">
