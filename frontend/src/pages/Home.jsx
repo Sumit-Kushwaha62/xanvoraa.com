@@ -289,10 +289,15 @@ function StatCard({ value, suffix, label, start }) {
 export default function Home() {
   const [statsRef, statsInView] = useInView(0.3)
   const [heroLoaded, setHeroLoaded] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(false)
 
   useEffect(() => {
     const t = setTimeout(() => setHeroLoaded(true), 100)
-    return () => clearTimeout(t)
+    const videoTimer = setTimeout(() => setLoadVideo(true), 1200)
+    return () => {
+      clearTimeout(t)
+      clearTimeout(videoTimer)
+    }
   }, [])
 
   return (
@@ -311,11 +316,11 @@ export default function Home() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={heroPoster}
           aria-hidden="true"
         >
-          <source src={heroVideo2} type="video/mp4" />
+          {loadVideo && <source src={heroVideo2} type="video/mp4" />}
         </video>
         <div className="hero__video-overlay" />
         {/* Animated grid bg */}

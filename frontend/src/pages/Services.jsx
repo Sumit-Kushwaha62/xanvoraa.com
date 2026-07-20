@@ -463,11 +463,16 @@ export default function Services() {
   const [hoveredCard, setHoveredCard] = useState(null)
   const [visibleCards, setVisibleCards] = useState(new Set())
   const [heroVisible, setHeroVisible] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(false)
   const cardsRef = useRef([])
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100)
-    return () => clearTimeout(t)
+    const videoTimer = setTimeout(() => setLoadVideo(true), 1200)
+    return () => {
+      clearTimeout(t)
+      clearTimeout(videoTimer)
+    }
   }, [])
 
   useEffect(() => {
@@ -504,11 +509,11 @@ export default function Services() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={servicesHeroPoster}
           >
             {/* Uses a free-to-use abstract tech video from Pexels CDN */}
-            <source src={servicesHeroVideo} type="video/mp4" />
+            {loadVideo && <source src={servicesHeroVideo} type="video/mp4" />}
           </video>
           <div className="srv-hero__video-overlay" />
         </div>
