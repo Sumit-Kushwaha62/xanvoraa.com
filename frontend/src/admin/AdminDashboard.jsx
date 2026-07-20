@@ -332,6 +332,7 @@ function ConversationsTab() {
       if (conversationTo) params.set('to', conversationTo)
       const res = await fetch(`${API_ENDPOINTS.admin.conversations}?${params.toString()}`, {
         credentials: 'include',
+        headers: { ...getAdminHeaders() }
       })
       const data = await parseJson(res)
       setRows(data.data || [])
