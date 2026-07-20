@@ -162,7 +162,7 @@ const portfolio = [
 const testimonials = [
   {
     name: 'Dr. Ramesh Sharma',
-    role: 'Director, Sharma Hospital, Jabalpur',
+    role: 'Director, Sharma Hospital,',
     text: 'Xanvoraa Technologies built our HMS from scratch. The OPD and billing system saved us 3 hours daily. Excellent team, always available on WhatsApp.',
     rating: 5,
     image: rameshAvatar,
@@ -188,7 +188,7 @@ const testimonials = [
     name: 'Sunita Patel',
     role: 'CEO, SP Travels, Bhopal',
     text: 'Website redesign was exactly what we needed. Traffic increased 3x after launch. SEO results are amazing. Very professional team.',
-    rating: 5,
+    rating: 4.5,
     image: sunitaAvatar,
     color: '#FFB347',
   },
