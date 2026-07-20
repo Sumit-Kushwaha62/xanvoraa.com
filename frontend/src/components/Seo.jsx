@@ -34,7 +34,7 @@ export default function Seo({ title, description, path = '/', image = DEFAULT_IM
               "https://www.facebook.com/profile.php?id=61591753907096",
               "https://www.instagram.com/xanvoraa_technologies/",
               "https://www.linkedin.com/company/133387539/",
-              "https://x.com/home"
+              "https://x.com/xanvoraatech"
             ]
           })}
         </script>
