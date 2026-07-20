@@ -60,7 +60,6 @@ export default function Contact() {
   const [form, setForm] = useState(EMPTY_FORM)
   const [status, setStatus] = useState(null) // null | 'sending' | 'sent' | 'error'
   const [errorMessage, setErrorMessage] = useState('')
-  const [mapInteractive, setMapInteractive] = useState(false)
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -393,74 +392,14 @@ export default function Contact() {
                 Get Directions →
               </a>
             </div>
-            {!mapInteractive ? (
-              <div 
-                className="contact-map__placeholder"
-                onClick={() => setMapInteractive(true)}
-                style={{
-                  height: '450px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #1b1931 0%, #110f22 100%)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--radius-lg)',
-                  cursor: 'pointer',
-                  textAlign: 'center',
-                  padding: '24px',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {/* Visual grid overlay to make it look premium */}
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  backgroundImage: 'radial-gradient(rgba(108, 99, 255, 0.15) 1px, transparent 1px)',
-                  backgroundSize: '16px 16px',
-                  opacity: 0.6
-                }} />
-                
-                {/* Beautiful Map Pin Icon */}
-                <svg 
-                  viewBox="0 0 24 24" 
-                  width="48" 
-                  height="48" 
-                  stroke="var(--primary-light)" 
-                  strokeWidth="1.5" 
-                  fill="none" 
-                  style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 8px rgba(108, 99, 255, 0.4))', zIndex: 1 }}
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                
-                <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text-primary)', marginBottom: '8px', zIndex: 1 }}>
-                  Interactive Google Map
-                </h3>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', maxWidth: '320px', marginBottom: '20px', zIndex: 1 }}>
-                  Click to load the interactive map of our office in Wright Town, Jabalpur.
-                </p>
-                <button 
-                  type="button"
-                  className="btn-primary" 
-                  style={{ zIndex: 1, padding: '10px 24px', fontSize: '13px' }}
-                >
-                  Load Map
-                </button>
-              </div>
-            ) : (
-              <iframe
-                className="contact-map__frame"
-                title="Xanvoraa office location in Wright Town, Jabalpur"
-                src="https://www.google.com/maps?q=Wright%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&t=k&z=16&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            )}
+            <iframe
+              className="contact-map__frame"
+              title="Xanvoraa office location in Wright Town, Jabalpur"
+              src="https://www.google.com/maps?q=Wright%20Town%2C%20Jabalpur%2C%20Madhya%20Pradesh&t=k&z=16&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
