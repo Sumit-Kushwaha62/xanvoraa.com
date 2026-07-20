@@ -5,6 +5,7 @@ const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 export default function Seo({ title, description, path = '/', image = DEFAULT_IMAGE }) {
   const canonical = `${SITE_URL}${path === '/' ? '' : path}`
+  const isHomePage = path === '/' || path === ''
 
   return (
     <Helmet>
@@ -21,6 +22,23 @@ export default function Seo({ title, description, path = '/', image = DEFAULT_IM
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      {isHomePage && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Xanvoraa Technologies",
+            "url": SITE_URL,
+            "logo": `${SITE_URL}/logo.png`,
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=61591753907096",
+              "https://www.instagram.com/xanvoraatechnology/",
+              "https://www.linkedin.com/company/133387539/",
+              "https://x.com/home"
+            ]
+          })}
+        </script>
+      )}
     </Helmet>
   )
 }

@@ -40,7 +40,7 @@ export async function login(req, res) {
       { ...JWT_OPTIONS, expiresIn: '8h' },
     )
     res.cookie(ADMIN_COOKIE_NAME, token, cookieOptions())
-    return res.json({ success: true, admin: { id: admin.id, email: admin.email, role: admin.role } })
+    return res.json({ success: true, token, admin: { id: admin.id, email: admin.email, role: admin.role } })
   } catch (error) { console.error('Admin login failed:', error.message); return res.status(500).json({ success: false, message: 'Something went wrong' }) }
 }
 export function logout(_req, res) {

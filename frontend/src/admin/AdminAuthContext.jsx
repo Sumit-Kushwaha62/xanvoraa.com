@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, getAdminHeaders } from '../config/api'
 const AdminAuthContext = createContext(null)
 async function json(response) { const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.message || 'Request failed'); return data }
 export function AdminAuthProvider({ children }) {
@@ -8,8 +8,15 @@ export function AdminAuthProvider({ children }) {
   const checkSession = useCallback(async () => {
     setAuthLoading(true)
     try {
-      const response = await fetch(API_ENDPOINTS.admin.me, { credentials: 'include' })
-      if (response.status === 401) { setAdmin(null); return null }
+      const response = await fetch(API_ENDPOINTS.admin.me, {
+        credentials: 'include',
+        headers: { ...getAdminHeaders() }
+      })
+      if (response.status === 401) {
+        localStorage.removeItem('xanvoraa_admin_token')
+        setAdmin(null)
+        return null
+      }
       const data = await json(response); setAdmin(data); return data
     } catch (error) { console.error('Admin session check failed:', error); setAdmin(null); return null }
     finally { setAuthLoading(false) }
@@ -19,10 +26,34 @@ export function AdminAuthProvider({ children }) {
     return () => window.clearTimeout(timer)
   }, [checkSession])
   const login = useCallback(async (email, password) => {
-    const response = await fetch(API_ENDPOINTS.admin.login, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) })
-    const data = await json(response); setAdmin(data.admin); return data.admin
+    const response = await fetch(API_ENDPOINTS.admin.login, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAdminHeaders()
+      },
+      body: JSON.stringify({ email, password })
+    })
+    const data = await json(response)
+    if (data.token) {
+      localStorage.setItem('xanvoraa_admin_token', data.token)
+    }
+    setAdmin(data.admin)
+    return data.admin
   }, [])
-  const logout = useCallback(async () => { try { await fetch(API_ENDPOINTS.admin.logout, { method: 'POST', credentials: 'include' }) } finally { setAdmin(null) } }, [])
+  const logout = useCallback(async () => {
+    try {
+      await fetch(API_ENDPOINTS.admin.logout, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { ...getAdminHeaders() }
+      })
+    } finally {
+      localStorage.removeItem('xanvoraa_admin_token')
+      setAdmin(null)
+    }
+  }, [])
   const value = useMemo(() => ({ admin, authLoading, checkSession, login, logout }), [admin, authLoading, checkSession, login, logout])
   return <AdminAuthContext.Provider value={value}>{children}</AdminAuthContext.Provider>
 }

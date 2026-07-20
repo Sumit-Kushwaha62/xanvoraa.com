@@ -1,5 +1,5 @@
 import { createElement, useEffect } from 'react'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, viewResume } from '../config/api'
 
 const show = value =>
   value === null || value === undefined || value === '' ? '—' : String(value)
@@ -24,16 +24,24 @@ function DetailField({ field, value }) {
   }
 
   if (type === 'link' && value) {
-    const href =
-      field.key === 'resume_url' && !/^https?:\/\//i.test(value)
-        ? API_ENDPOINTS.admin.resume(value)
-        : value
-
-    content = (
-      <a href={href} target="_blank" rel="noreferrer" className="admin-link">
-        Open link
-      </a>
-    )
+    if (field.key === 'resume_url' && !/^https?:\/\//i.test(value)) {
+      content = (
+        <button
+          type="button"
+          onClick={() => viewResume(value)}
+          className="admin-link"
+          style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textAlign: 'left', textDecoration: 'underline' }}
+        >
+          Open link
+        </button>
+      )
+    } else {
+      content = (
+        <a href={value} target="_blank" rel="noreferrer" className="admin-link">
+          Open link
+        </a>
+      )
+    }
   }
 
   if (type === 'email' && value) {

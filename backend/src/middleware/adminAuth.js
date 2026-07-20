@@ -7,7 +7,15 @@ export const JWT_OPTIONS = {
 }
 
 export function requireAdminAuth(request, response, next) {
-  const token = request.cookies?.[ADMIN_COOKIE_NAME]
+  let token = request.cookies?.[ADMIN_COOKIE_NAME]
+
+  // Fallback to Authorization: Bearer <token>
+  if (!token && request.headers.authorization) {
+    const parts = request.headers.authorization.split(' ')
+    if (parts.length === 2 && parts[0] === 'Bearer') {
+      token = parts[1]
+    }
+  }
 
   if (!token || !process.env.JWT_SECRET) {
     return response.status(401).json({

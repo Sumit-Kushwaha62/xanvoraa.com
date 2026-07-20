@@ -7,7 +7,7 @@ import {
   TrendingUp,
   UserRoundPlus,
 } from 'lucide-react'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, getAdminHeaders } from '../config/api'
 
 const SOURCES = [
   { key: 'contacts', label: 'Contact leads', color: '#6c63ff', endpoint: API_ENDPOINTS.admin.contacts },
@@ -107,9 +107,15 @@ export default function AdminAnalytics() {
     setError('')
     try {
       const requests = [
-        fetch(API_ENDPOINTS.admin.stats, { credentials: 'include' }).then(readJson),
+        fetch(API_ENDPOINTS.admin.stats, {
+          credentials: 'include',
+          headers: { ...getAdminHeaders() }
+        }).then(readJson),
         ...SOURCES.map((source) =>
-          fetch(source.endpoint + '?page=1&limit=100', { credentials: 'include' }).then(readJson)
+          fetch(source.endpoint + '?page=1&limit=100', {
+            credentials: 'include',
+            headers: { ...getAdminHeaders() }
+          }).then(readJson)
         ),
       ]
       const [statsResult, ...sourceResults] = await Promise.all(requests)

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, getAdminHeaders } from '../config/api'
 
 export default function ConversationPanel({ sessionId, onClose }) {
   const [conversation, setConversation] = useState(null)
@@ -16,6 +16,7 @@ export default function ConversationPanel({ sessionId, onClose }) {
       try {
         const res = await fetch(API_ENDPOINTS.admin.conversation(sessionId), {
           credentials: 'include',
+          headers: { ...getAdminHeaders() }
         })
         const data = await res.json().catch(() => ({}))
         if (!res.ok) throw new Error(data.message || 'Unable to load conversation')

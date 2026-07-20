@@ -1,6 +1,6 @@
 import { createElement, useCallback, useEffect, useState } from 'react'
 import xanvoraaLogo from '../assets/xanvoraa-x-mark.png'
-import { API_ENDPOINTS } from '../config/api'
+import { API_ENDPOINTS, getAdminHeaders, viewResume } from '../config/api'
 import { useAdminAuth } from './AdminAuthContext'
 import { Helmet } from 'react-helmet-async'
 import ConversationPanel from './ConversationPanel'
@@ -91,9 +91,20 @@ export default function AdminDashboard() {
                   label: 'Resume',
                   render: (value) =>
                     value ? (
-                      <a href={value.startsWith('http://') || value.startsWith('https://') ? value : API_ENDPOINTS.admin.resume(value)} target="_blank" rel="noreferrer" className="admin-link">
-                        View
-                      </a>
+                      value.startsWith('http://') || value.startsWith('https://') ? (
+                        <a href={value} target="_blank" rel="noreferrer" className="admin-link">
+                          View
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => viewResume(value)}
+                          className="admin-link"
+                          style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}
+                        >
+                          View
+                        </button>
+                      )
                     ) : (
                       '—'
                     ),
@@ -146,7 +157,10 @@ function DataTable({ title, endpoint, columns }) {
       if (from) params.set('from', from)
       if (to) params.set('to', to)
       if (search) params.set('search', search)
-      const res = await fetch(`${endpoint}?${params.toString()}`, { credentials: 'include' })
+      const res = await fetch(`${endpoint}?${params.toString()}`, {
+        credentials: 'include',
+        headers: { ...getAdminHeaders() }
+      })
       const data = await parseJson(res)
       setRows(data.data || [])
       setTotalPages(data.pagination?.totalPages || 1)
@@ -180,7 +194,10 @@ function DataTable({ title, endpoint, columns }) {
         if (from) params.set('from', from)
         if (to) params.set('to', to)
         if (search) params.set('search', search)
-        const response = await fetch(endpoint + '?' + params.toString(), { credentials: 'include' })
+        const response = await fetch(endpoint + '?' + params.toString(), {
+          credentials: 'include',
+          headers: { ...getAdminHeaders() }
+        })
         const result = await parseJson(response)
         allRows.push(...(result.data || []))
         totalExportPages = result.pagination?.totalPages || 1
@@ -477,7 +494,10 @@ function SettingsTab() {
       const res = await fetch(API_ENDPOINTS.admin.changePassword, {
         method: 'POST',
         credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAdminHeaders(),
+        },
         body: JSON.stringify({ currentPassword, newPassword }),
       })
       const data = await parseJson(res)
