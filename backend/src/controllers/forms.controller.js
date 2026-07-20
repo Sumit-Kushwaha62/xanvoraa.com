@@ -3,6 +3,22 @@ import { sendFormAlert, sendTelegramAlert } from '../services/email.service.js'
 import { appendFormRow } from '../services/googleSheets.service.js'
 import { getSupabaseClient } from '../config/supabase.js'
 
+function formatSheetTimestamp(isoString) {
+  try {
+    return new Date(isoString).toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    })
+  } catch {
+    return isoString
+  }
+}
+
 const SUCCESS_RESPONSE = {
   success: true,
   message: 'Form submitted successfully',
@@ -217,7 +233,7 @@ export async function submitContactForm(request, response) {
 
   runPostSubmissionTasks([
     appendFormRow('contact', [
-      contactData.timestamp,
+      formatSheetTimestamp(contactData.timestamp),
       contactData.name,
       contactData.email,
       contactData.mobile,
@@ -308,7 +324,7 @@ export async function submitCareerForm(request, response) {
 
   runPostSubmissionTasks([
     appendFormRow('career', [
-      careerData.timestamp,
+      formatSheetTimestamp(careerData.timestamp),
       careerData.name,
       careerData.email,
       careerData.mobile,
@@ -346,7 +362,7 @@ export async function submitNewsletterForm(request, response) {
   }
 
   runPostSubmissionTasks([
-    appendFormRow('newsletter', [timestamp, email]),
+    appendFormRow('newsletter', [formatSheetTimestamp(timestamp), email]),
     sendAlertSafely('newsletter', { timestamp, email }),
   ])
 

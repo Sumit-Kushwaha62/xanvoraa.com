@@ -11,6 +11,11 @@ function safeSheetValue(value) {
   return /^[\s]*[=+\-@]/.test(value) ? "'" + value : value
 }
 
+function forceTextValue(value) {
+  if (typeof value !== 'string' || value === '') return value
+  return "'" + value
+}
+
 export async function appendFormRow(formType, values) {
   const spreadsheetId = process.env.GOOGLE_SHEET_ID
   const range = SHEET_RANGES[formType]
@@ -33,13 +38,20 @@ export async function appendFormRow(formType, values) {
     }
   }
 
+  const processedValues = values.map((val, index) => {
+    if ((formType === 'contact' || formType === 'career') && index === 3) {
+      return forceTextValue(val)
+    }
+    return safeSheetValue(val)
+  })
+
   await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,
     valueInputOption: 'USER_ENTERED',
     insertDataOption: 'INSERT_ROWS',
     requestBody: {
-      values: [values.map(safeSheetValue)],
+      values: [processedValues],
     },
   }, { timeout: 15_000 })
 }
