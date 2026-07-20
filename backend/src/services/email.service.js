@@ -145,3 +145,53 @@ export async function sendFormAlert(formType, data) {
     messageId: info.messageId,
   }
 }
+
+export async function sendTelegramAlert(formType, data) {
+  const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN?.trim()
+  const telegramChatId = process.env.TELEGRAM_CHAT_ID?.trim()
+
+  if (!telegramBotToken || !telegramChatId) {
+    return {
+      sent: false,
+      skipped: true,
+    }
+  }
+
+  const formConfig = FORM_CONFIG[formType]
+  if (!formConfig) {
+    throw new Error(`Unsupported Telegram alert form type: ${formType}`)
+  }
+
+  const timestamp = data.timestamp || new Date().toISOString()
+  const textFields = formConfig.fields.map(
+    ([label, key]) => `${label}: ${displayValue(data[key])}`,
+  )
+
+  const textBody = [
+    formConfig.subject,
+    `Timestamp: ${timestamp}`,
+    '',
+    ...textFields,
+  ].join('\n')
+
+  const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      chat_id: telegramChatId,
+      text: textBody,
+    }),
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    throw new Error(`Telegram API error: ${response.status} - ${errorText}`)
+  }
+
+  return {
+    sent: true,
+    skipped: false,
+  }
+}

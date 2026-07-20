@@ -1,5 +1,5 @@
 import { readFile, unlink } from 'node:fs/promises'
-import { sendFormAlert } from '../services/email.service.js'
+import { sendFormAlert, sendTelegramAlert } from '../services/email.service.js'
 import { appendFormRow } from '../services/googleSheets.service.js'
 import { getSupabaseClient } from '../config/supabase.js'
 
@@ -138,12 +138,23 @@ async function removeStoredResume(filename) {
 }
 
 async function sendAlertSafely(formType, data) {
-  try {
-    const result = await sendFormAlert(formType, data)
-    if (result.sent) console.log(formType + ' email alert sent successfully')
-  } catch (error) {
-    console.error(formType + ' email alert failed:', error.message)
-  }
+  const emailAlert = sendFormAlert(formType, data)
+    .then(result => {
+      if (result.sent) console.log(formType + ' email alert sent successfully')
+    })
+    .catch(error => {
+      console.error(formType + ' email alert failed:', error.message)
+    })
+
+  const telegramAlert = sendTelegramAlert(formType, data)
+    .then(result => {
+      if (result.sent) console.log(formType + ' Telegram alert sent successfully')
+    })
+    .catch(error => {
+      console.error(formType + ' Telegram alert failed:', error.message)
+    })
+
+  await Promise.allSettled([emailAlert, telegramAlert])
 }
 
 async function insertSafely(table, data) {
