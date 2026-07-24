@@ -5,3 +5,7 @@ keys/
 !package.json
 !package-lock.json
 service-account*.json
+*service-account*.json
+*service_account*.json
+*credentials*.json
+gen-lang-client-0395614622-b67a53dbdb6a.json

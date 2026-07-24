@@ -18,6 +18,14 @@ export const API_ENDPOINTS = {
     newsletter: API_BASE_URL + '/api/admin/newsletter',
     conversations: API_BASE_URL + '/api/admin/conversations',
     conversation: sessionId => API_BASE_URL + '/api/admin/conversations/' + encodeURIComponent(sessionId),
+    analytics: {
+      summary: API_BASE_URL + '/api/admin/analytics/summary',
+      timeseries: API_BASE_URL + '/api/admin/analytics/timeseries',
+      topPages: API_BASE_URL + '/api/admin/analytics/top-pages',
+      topReferrers: API_BASE_URL + '/api/admin/analytics/top-referrers',
+      devices: API_BASE_URL + '/api/admin/analytics/devices',
+      countries: API_BASE_URL + '/api/admin/analytics/countries',
+    },
   },
 }
 

@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import formsRoutes from './routes/forms.routes.js'
 import healthRouter from './routes/health.routes.js'
 import adminRoutes from './routes/admin.routes.js'
+import analyticsRoutes from './routes/analytics.routes.js'
 import chatRoutes from './routes/chat.routes.js'
 import { getEmailTransporter } from './config/email.js'
 
@@ -110,6 +111,7 @@ app.use('/api/health', healthRouter)
 app.use('/api/forms', formsLimiter, formsRoutes)
 app.use('/api/chat', chatLimiter, chatRoutes)
 app.use('/api/admin/login', loginLimiter)
+app.use('/api/admin/analytics', analyticsRoutes)
 app.use('/api/admin', adminRoutes)
 
 app.use((error, _request, response, _next) => {

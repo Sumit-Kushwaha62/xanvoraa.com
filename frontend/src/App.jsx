@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect } from 'react';
+import { useLayoutEffect, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -43,6 +43,29 @@ function ThemeRouteSync() {
 
   return null
 }
+
+function GAPageviewTracker() {
+  const { pathname } = useLocation()
+  const isFirstRender = useRef(true)
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
+    if (pathname.startsWith('/admin') || !window.gtag) return
+
+    window.gtag('event', 'page_view', {
+      page_path: pathname,
+      page_location: window.location.href,
+      page_title: document.title,
+    })
+  }, [pathname])
+
+  return null
+}
+
 function PublicLayout() {
   return (
     <div className="app-container">
@@ -62,6 +85,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <ThemeRouteSync />
+      <GAPageviewTracker />
       <AdminAuthProvider>
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />

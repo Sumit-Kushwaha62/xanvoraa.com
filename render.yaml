@@ -19,6 +19,12 @@ services:
         sync: false
       - key: GEMINI_API_KEY
         sync: false
+      - key: GA4_PROPERTY_ID
+        sync: false
+      - key: GA4_CLIENT_EMAIL
+        sync: false
+      - key: GA4_PRIVATE_KEY
+        sync: false
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT

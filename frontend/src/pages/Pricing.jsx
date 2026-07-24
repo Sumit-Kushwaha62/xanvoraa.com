@@ -20,7 +20,7 @@ const packages = [
     note: 'one-time, starting from',
     color: '#00D4AA',
     description: 'A polished business website with everything needed to establish trust and generate enquiries.',
-    features: ['Up to 5 responsive pages', 'Professional UI design', 'Contact & WhatsApp integration', 'Basic technical SEO', '2 revision rounds', '3–4 week delivery'],
+    features: ['Up to 5 responsive pages', 'Professional UI design', 'Contact & WhatsApp integration', 'Basic technical SEO', '2 revision rounds', '2-day delivery'],
     cta: 'Choose Launch',
   },
   {
@@ -30,7 +30,7 @@ const packages = [
     note: 'one-time, starting from',
     color: '#6C63FF',
     description: 'A conversion-focused website with custom design, content management and stronger lead generation.',
-    features: ['Up to 10 responsive pages', 'Custom UI/UX system', 'CMS or admin panel', 'Blog & advanced lead forms', 'Analytics & advanced SEO setup', '3 revision rounds', '5–6 week delivery'],
+    features: ['Up to 10 responsive pages', 'Custom UI/UX system', 'CMS or admin panel', 'Blog & advanced lead forms', 'Analytics & advanced SEO setup', '3 revision rounds', '1-week delivery'],
     cta: 'Choose Growth',
     popular: true,
   },

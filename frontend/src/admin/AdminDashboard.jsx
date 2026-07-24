@@ -7,10 +7,12 @@ import ConversationPanel from './ConversationPanel'
 import SubmissionDetailModal from './SubmissionDetailModal'
 import { downloadCsv } from './csvExport'
 import AdminAnalytics from './AdminAnalytics'
+import AdminVisitors from './AdminVisitors'
 import { Download, Search, SlidersHorizontal, X } from 'lucide-react'
 
 const TABS = [
   { id: 'overview', label: 'Overview' },
+  { id: 'visitors', label: 'Visitors' },
   { id: 'contacts', label: 'Contacts' },
   { id: 'careers', label: 'Careers' },
   { id: 'newsletter', label: 'Newsletter' },
@@ -58,6 +60,7 @@ export default function AdminDashboard() {
 
         <main className="admin-content">
           {activeTab === 'overview' && <AdminAnalytics />}
+          {activeTab === 'visitors' && <AdminVisitors />}
           {activeTab === 'contacts' && (
             <DataTable
               title="Contact Submissions"
