@@ -494,9 +494,10 @@ export default function Services() {
   return (
     <div className="srv-page">
       <Seo
-        title="Software & Web Development Services | Xanvoraa Technologies"
-        description="Xanvoraa Technologies provides software development, mobile apps, AI automation, and custom web development services."
+        title="Web Development, App Development & AI Services in Jabalpur | Xanvoraa Technologies"
+        description="Explore Xanvoraa Technologies' full range of services — custom website development, mobile app development, AI chatbot & automation, WordPress, ecommerce, hospital software, school ERP, and enterprise software solutions in Jabalpur."
         path="/services"
+        keywords="web development services Jabalpur, app development agency India, AI chatbot development, WordPress development, custom software services, ecommerce development agency, React development company, Node.js developer, PHP Laravel development, hospital software development, school management software"
       />
 
       {/* ══ VIDEO HERO ══ */}

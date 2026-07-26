@@ -303,9 +303,10 @@ export default function Home() {
   return (
     <div className="home">
       <Seo
-        title="Xanvoraa Technologies | Software & Web Development Company in Jabalpur"
-        description="Xanvoraa Technologies builds custom software, websites, and mobile apps for hospitals, schools, startups, and enterprises."
+        title="Xanvoraa Technologies | Best Software & Web Development Company in Jabalpur, India"
+        description="Xanvoraa Technologies is a top software development agency in Jabalpur building custom websites, mobile apps, AI chatbots, and enterprise software for hospitals, schools, startups and enterprises."
         path="/"
+        keywords="best software company Jabalpur, web development company Jabalpur, mobile app development agency, custom software development India, IT company Jabalpur, website design agency, React Node.js PHP development, hospital management software, school ERP, ecommerce website, AI chatbot development, Xanvoraa Technologies"
       />
 
       {/* ── HERO ── */}

@@ -251,9 +251,10 @@ export default function Career() {
   return (
     <div className="career-page">
       <Seo
-        title="Careers at Xanvoraa Technologies | Software Development Jobs"
-        description="Xanvoraa Technologies offers frontend, backend, design, and software development careers in Jabalpur and remote roles."
+        title="Careers & Jobs at Xanvoraa Technologies | Software Developer Jobs in Jabalpur"
+        description="Join Xanvoraa Technologies — hiring React, Node.js, PHP developers, UI/UX designers, and software interns in Jabalpur. Remote and on-site software development jobs available."
         path="/career"
+        keywords="software developer jobs Jabalpur, React developer jobs, Node.js jobs India, PHP developer Jabalpur, web developer career, IT jobs Madhya Pradesh, frontend developer jobs, internship Jabalpur"
       />
 
       {/* ── HERO ── */}

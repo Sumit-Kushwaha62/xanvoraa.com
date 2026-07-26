@@ -119,9 +119,10 @@ export default function Contact() {
   return (
     <div className="contact-page">
       <Seo
-        title="Contact Xanvoraa Technologies | Software Company in Jabalpur"
-        description="Contact Xanvoraa Technologies in Jabalpur for custom software, web development, mobile apps, AI automation, and IT support."
+        title="Contact Us | Xanvoraa Technologies — Software & Web Development Company Jabalpur"
+        description="Get in touch with Xanvoraa Technologies for a free consultation on website development, mobile app development, custom software, AI chatbots, or any IT project. Call +91-7067694391 or email info@xanvoraa.com."
         path="/contact"
+        keywords="contact software company Jabalpur, hire web developer Jabalpur, software development consultation, IT company contact India, free website consultation, Xanvoraa Technologies contact"
       />
 
       {/* ── HERO ── */}

@@ -84,9 +84,10 @@ export default function Pricing() {
   return (
     <div className="pricing-page">
       <Seo
-        title="Services Pricing - Xanvoraa Technologies"
-        description="Xanvoraa Technologies offers transparent starting prices for custom websites, e-commerce, mobile apps, and custom software."
+        title="Affordable Website & Software Development Pricing | Xanvoraa Technologies Jabalpur"
+        description="Transparent and affordable pricing for custom website development, ecommerce stores, mobile apps, AI chatbots, and enterprise software by Xanvoraa Technologies starting from ₹15,000."
         path="/pricing"
+        keywords="website development cost Jabalpur, affordable web development India, software development pricing, mobile app development cost, ecommerce website price, custom software cost India, cheap website design Jabalpur"
       />
       <section className="page-hero">
         <PageHeroVideo src={pageHeroVideo} poster={pageHeroPoster} />

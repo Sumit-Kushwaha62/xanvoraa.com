@@ -82,9 +82,10 @@ export default function About() {
   return (
     <div className="about-page">
       <Seo
-        title="About Xanvoraa Technologies | Software Team in Jabalpur"
-        description="Meet Xanvoraa Technologies, a Jabalpur software team building reliable websites, mobile apps, and custom digital products."
+        title="About Xanvoraa Technologies | Leading IT & Software Development Agency in Jabalpur"
+        description="Xanvoraa Technologies is a Jabalpur-based IT company and software development agency trusted by hospitals, schools, startups and enterprises across India, UK, USA, Canada and Australia."
         path="/about"
+        keywords="about Xanvoraa Technologies, IT company Jabalpur, software agency Jabalpur, web development team India, best developers Jabalpur, software company Madhya Pradesh"
       />
 
       {/* ── HERO ── */}
