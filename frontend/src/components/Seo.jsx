@@ -29,7 +29,23 @@ export default function Seo({ title, description, path = '/', image = DEFAULT_IM
             "@type": "Organization",
             "name": "Xanvoraa Technologies",
             "url": SITE_URL,
-            "logo": `${SITE_URL}/logo.png`,
+            "logo": `${SITE_URL}/favicon-512.png`,
+            "description": "Software and web development agency building custom software, websites and mobile apps for hospitals, schools, startups and enterprises.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Wright Town",
+              "addressLocality": "Jabalpur",
+              "addressRegion": "Madhya Pradesh",
+              "addressCountry": "IN"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-7067694391",
+              "email": "info@xanvoraa.com",
+              "contactType": "customer service",
+              "areaServed": "IN",
+              "availableLanguage": ["English", "Hindi"]
+            },
             "sameAs": [
               "https://www.facebook.com/profile.php?id=61591753907096",
               "https://www.instagram.com/xanvoraa_technologies/",
