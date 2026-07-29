@@ -231,7 +231,7 @@ const team = [
 
 const whyUs = [
   { icon: '⚡', title: 'Fast Delivery', desc: 'Agile process. MVP in 2–4 weeks, full projects on schedule.' },
-  { icon: 'speed', title: 'Transparent Pricing', desc: 'No hidden costs. Fixed quotes upfront, starting ₹15,000.' },
+  // { icon: 'speed', title: 'Transparent Pricing', desc: 'No hidden costs. Fixed quotes upfront, starting ₹15,000.' },
   { icon: 'pricing', title: '24/7 Support', desc: 'WhatsApp, email and call support. We respond within 2 hours.' },
   { icon: 'message', title: 'Any Tech Stack', desc: 'PHP to Node.js, React to Flutter. Every technology covered.' },
   { icon: 'settings', title: '100% Code Ownership', desc: 'Full source code delivered to you. No lock-ins ever.' },

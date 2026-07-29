@@ -314,7 +314,7 @@ export default function Portfolio() {
             <p className="portfolio-cta__sub">Free consultation · Quick turnaround · Quality guaranteed</p>
             <div className="portfolio-cta__actions">
               <Link to="/contact" className="btn-primary">Start Your Project</Link>
-              <Link to="/pricing" className="btn-outline">View Pricing →</Link>
+              {/* <Link to="/pricing" className="btn-outline">View Pricing →</Link> */}
             </div>
           </div>
         </div>

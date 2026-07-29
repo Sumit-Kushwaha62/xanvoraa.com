@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
-import Pricing from './pages/Pricing';
+// import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Career from './pages/Career';
 import Contact from './pages/Contact';
@@ -103,7 +103,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/pricing" element={<Pricing />} />
+            {/* <Route path="/pricing" element={<Pricing />} /> */}
+            <Route path="/pricing" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />

@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from '../config/api'
 
 const INITIAL_MESSAGE = {
   role: 'model',
-  text: "Hi! I'm Xanvoraa AI — I can help you learn about our services, pricing, and how Xanvoraa Technologies can help your business. What would you like to know?",
+  text: "Hi! I'm Xanvoraa AI — I can help you learn about our services and how Xanvoraa Technologies can help your business. What would you like to know?",
 }
 
 const HINGLISH_WORDS = /\b(?:aap|abhi|batao|bataiye|chahiye|hai|hain|kaise|karna|karo|kitna|kitni|kya|mera|mere|mujhe|nahi|nhi|samjhao)\b/i
