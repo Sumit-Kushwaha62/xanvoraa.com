@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../admin.css'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useAdminAuth } from './AdminAuthContext'
 import { Helmet } from 'react-helmet-async'

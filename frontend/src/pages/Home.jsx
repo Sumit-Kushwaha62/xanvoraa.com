@@ -2,6 +2,7 @@ import Seo from '../components/Seo'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteIcon from '../components/SiteIcon'
+import useDeferredVideo from '../hooks/useDeferredVideo'
 import sumitImage from '../assets/somya shukla.png'
 import riyaImage from '../assets/riya jyotishi.jpeg'
 import kashishImage from '../assets/kashish sahu.jpeg'
@@ -289,15 +290,11 @@ function StatCard({ value, suffix, label, start }) {
 export default function Home() {
   const [statsRef, statsInView] = useInView(0.3)
   const [heroLoaded, setHeroLoaded] = useState(false)
-  const [loadVideo, setLoadVideo] = useState(false)
+  const loadVideo = useDeferredVideo()
 
   useEffect(() => {
     const t = setTimeout(() => setHeroLoaded(true), 100)
-    const videoTimer = setTimeout(() => setLoadVideo(true), 1200)
-    return () => {
-      clearTimeout(t)
-      clearTimeout(videoTimer)
-    }
+    return () => clearTimeout(t)
   }, [])
 
   return (
@@ -317,7 +314,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
           poster={heroPoster}
           aria-hidden="true"
         >
@@ -585,7 +582,7 @@ export default function Home() {
                     className="testimonial-card__avatar"
                     style={{ background: `${t.color}22`, color: t.color }}
                   >
-                    <img src={t.image} alt={`${t.name} — illustrated profile avatar`} />
+                    <img src={t.image} alt={`${t.name} — illustrated profile avatar`} loading="lazy" decoding="async" />
                   </div>
                   <div>
                     <p className="testimonial-card__name">{t.name}</p>
@@ -613,7 +610,7 @@ export default function Home() {
             {team.map((m, i) => (
               <div key={i} className="team-card">
                 <div className="team-card__avatar">
-                  <img src={m.image} alt={`${m.name} profile`} />
+                  <img src={m.image} alt={`${m.name} profile`} loading="lazy" decoding="async" />
                   {m.founder && (
                     <span className="team-card__founder-badge">founder</span>
                   )}

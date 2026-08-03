@@ -345,6 +345,7 @@ import servicesHeroPoster from '../assets/bg_serviess_page_poster.webp'
 
 
 import { useState, useEffect, useRef } from 'react'
+import useDeferredVideo from '../hooks/useDeferredVideo'
 import { Link } from 'react-router-dom'
 
 const services = [
@@ -463,16 +464,12 @@ export default function Services() {
   const [hoveredCard, setHoveredCard] = useState(null)
   const [visibleCards, setVisibleCards] = useState(new Set())
   const [heroVisible, setHeroVisible] = useState(false)
-  const [loadVideo, setLoadVideo] = useState(false)
+  const loadVideo = useDeferredVideo()
   const cardsRef = useRef([])
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100)
-    const videoTimer = setTimeout(() => setLoadVideo(true), 1200)
-    return () => {
-      clearTimeout(t)
-      clearTimeout(videoTimer)
-    }
+    return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
@@ -510,7 +507,7 @@ export default function Services() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             poster={servicesHeroPoster}
           >
             {/* Uses a free-to-use abstract tech video from Pexels CDN */}

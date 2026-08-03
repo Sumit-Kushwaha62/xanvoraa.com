@@ -1,4 +1,5 @@
 import { createElement, useCallback, useEffect, useState } from 'react'
+import '../admin.css'
 import xanvoraaLogo from '../assets/xanvoraa-x-mark.png'
 import { API_ENDPOINTS, getAdminHeaders, viewResume } from '../config/api'
 import { useAdminAuth } from './AdminAuthContext'

@@ -16,7 +16,9 @@ function readAppliedTheme() {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY)
     if (stored === 'light' || stored === 'dark') return stored
-  } catch {}
+  } catch {
+    // Storage can be unavailable in privacy mode; the dark default is safe.
+  }
   return 'dark'
 }
 

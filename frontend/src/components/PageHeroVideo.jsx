@@ -1,14 +1,7 @@
-import { useState, useEffect } from 'react'
+import useDeferredVideo from '../hooks/useDeferredVideo'
 
 export default function PageHeroVideo({ src, poster }) {
-  const [loadVideo, setLoadVideo] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadVideo(true)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+  const loadVideo = useDeferredVideo()
 
   return (
     <div className="page-hero__media" aria-hidden="true">
@@ -18,7 +11,7 @@ export default function PageHeroVideo({ src, poster }) {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         poster={poster}
       >
         {loadVideo && <source src={src} type="video/mp4" />}

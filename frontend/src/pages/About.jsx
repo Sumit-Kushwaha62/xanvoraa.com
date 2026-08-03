@@ -192,7 +192,7 @@ export default function About() {
               <div key={i} className="about-team-card" style={{ '--card-color': m.color }}>
                 <div className="about-team-card__avatar-wrap">
                   <div className="about-team-card__avatar">
-                    <img src={m.image} alt={`${m.name} profile`} />
+                    <img src={m.image} alt={`${m.name} profile`} loading="lazy" decoding="async" />
                   </div>
                   {m.founder && <span className="about-team-card__founder">Co-Founder</span>}
                 </div>

@@ -1,5 +1,5 @@
 import { createElement, useEffect } from 'react'
-import { API_ENDPOINTS, viewResume } from '../config/api'
+import { viewResume } from '../config/api'
 
 const show = value =>
   value === null || value === undefined || value === '' ? '—' : String(value)

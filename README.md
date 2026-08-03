@@ -29,15 +29,15 @@ The root `render.yaml` creates the Node API. Configure all values marked `sync: 
 
 Google Sheets is optional. If used, add `GOOGLE_SHEET_ID` and make the service-account credential available as a Render secret file, then set `GOOGLE_APPLICATION_CREDENTIALS` to that file path. Form submissions remain in Supabase if Sheets or email delivery is unavailable.
 
-## Frontend deployment (Vercel)
+## Frontend deployment (Netlify)
 
-Import this repository in Vercel and set the Root Directory to `frontend`. The included `vercel.json` preserves React routes on refresh. Set:
+Import this repository in Netlify and set the Base directory to `frontend`. The included `netlify.toml` and `public/_redirects` preserve React routes on refresh. Set:
 
 ```text
-VITE_API_BASE_URL=https://your-render-api.example.com
+VITE_API_URL=https://your-render-api.example.com
 ```
 
-After Vercel assigns the final domain, update the backend `FRONTEND_URL` and redeploy the backend.
+After Netlify assigns the final domain, update the backend `FRONTEND_URL` and redeploy the backend.
 
 ## Required production verification
 
